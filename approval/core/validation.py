@@ -1,7 +1,7 @@
 import re
 from collections import defaultdict
 from datetime import date
-from .models import Document, Observation, Issue, NUMBER_FIELDS
+from .models import Document, Observation, Issue, NUMBER_FIELDS, BOOLEAN_FIELDS
 from .quality import normalize
 
 REQUIRED_ROLES = {"request", "clinical", "ct", "labs", "pft"}
@@ -25,6 +25,10 @@ def canonical(field, value):
         return s
     return tuple(sorted(value)) if isinstance(value, list) else value
 
+def _severity(field):
+    # A dropped quote only blocks approval when the decision or a critical value depends on it.
+    return "blocking" if field in CRITICAL or field in BOOLEAN_FIELDS else "warning"
+
 def validate_evidence(observations: list[Observation], documents: list[Document]):
     lookup = {d.id: d for d in documents}
     accepted, issues = [], []
@@ -32,9 +36,9 @@ def validate_evidence(observations: list[Observation], documents: list[Document]
         d = lookup.get(o.evidence.document_id)
         p = next((p for p in d.pages if p.number == o.evidence.page), None) if d else None
         if p is None or not p.usable or normalize(o.evidence.quote) not in normalize(p.text):
-            issues.append(Issue(code="invalid_evidence", severity="blocking", detail=f"Unverifiable evidence for {o.field}"))
+            issues.append(Issue(code="invalid_evidence", severity=_severity(o.field), detail=f"Unverifiable evidence for {o.field}"))
         elif o.field in NUMBER_FIELDS and not any(float(n) == o.value for n in re.findall(r"(?<![\w.])\d+(?:\.\d+)?", o.evidence.quote)):
-            issues.append(Issue(code="invalid_evidence", severity="blocking", detail=f"Numeric value absent from quote for {o.field}"))
+            issues.append(Issue(code="invalid_evidence", severity=_severity(o.field), detail=f"Numeric value absent from quote for {o.field}"))
         else:
             accepted.append(o)
     return accepted, issues

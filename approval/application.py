@@ -60,6 +60,10 @@ def run(manifest, extractor, store, ocr=False, languages="eng", fresh=False):
             cached = None if fresh else store.get(key)
             extraction = cached if cached is not None else extractor.extract(doc)
             accepted, evidence_issues = validate_evidence(extraction.observations, [doc])
+            if evidence_issues and cached is None:
+                # Model output varies between calls; ask once more before blocking the document.
+                extraction = extractor.extract(doc)
+                accepted, evidence_issues = validate_evidence(extraction.observations, [doc])
             observations.extend(accepted)
             issues.extend(evidence_issues)
             if not cached and not evidence_issues: store.put(key, extraction)
@@ -71,8 +75,11 @@ def run(manifest, extractor, store, ocr=False, languages="eng", fresh=False):
             trace.append({"stage": "extract", "document_id": doc_id, "status": "failed", "error_type": type(exc).__name__})
     issues.extend(validate_case(docs, observations))
     recommendation = decide(observations, docs, issues)
+    role_of = {d.id: d.role for d in docs}
     def value(field):
-        return next((o.value for o in observations if o.field == field), None)
+        # Prefer the radiology report for lesion details (it has the full size); otherwise first observation.
+        ranked = sorted(observations, key=lambda o: role_of.get(o.evidence.document_id) != "ct")
+        return next((o.value for o in ranked if o.field == field), None)
     failures = any(i.code in ("read_failed", "extraction_failed", "partial_document", "invalid_evidence") for i in issues)
     result = Result(run_id=str(uuid.uuid4()), run_status="failed" if not observations else "partial" if failures else "completed",
         extraction_mode=extractor.identity, case_id=value("case_id"),
