@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medical-approval"
+version = "0.2.0"
+description = "Evidence-grounded prior authorization assignment"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.10,<3", "PyMuPDF>=1.24,<2", "python-docx>=1.1,<2", "groq==1.7.0"]
+
+[project.scripts]
+medical-approval = "approval.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["approval*"]

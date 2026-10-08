@@ -1,0 +1,29 @@
+{
+  "documents": [
+    {
+      "id": "request",
+      "role": "request",
+      "path": "input/01_Prior_Auth_Request_Form.pdf"
+    },
+    {
+      "id": "clinical",
+      "role": "clinical",
+      "path": "input/02_Clinical_Notes_H_and_P.pdf"
+    },
+    {
+      "id": "ct",
+      "role": "ct",
+      "path": "input/03_CT_Chest_Report.pdf"
+    },
+    {
+      "id": "labs",
+      "role": "labs",
+      "path": "input/04_Laboratory_Results.pdf"
+    },
+    {
+      "id": "pft",
+      "role": "pft",
+      "path": "input/05_Pulmonary_Function_Tests.pdf"
+    }
+  ]
+}

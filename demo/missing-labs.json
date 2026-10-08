@@ -1,0 +1,581 @@
+{
+  "schema_version": "1",
+  "policy_version": "assignment-v1",
+  "run_id": "ae381089-b136-4d79-9d3f-932dadb58ea1",
+  "run_status": "completed",
+  "extraction_mode": "local-layout-baseline:v1",
+  "case_id": "PA-2025-100001",
+  "patient": {
+    "name": "Alex T. Example",
+    "date_of_birth": "1953-03-15",
+    "mrn": "100001"
+  },
+  "request": {
+    "provider": "Demo Clinician, MD",
+    "procedure": "Robotic-Assisted Transbronchial Lung Biopsy",
+    "cpt_codes": [
+      "31629",
+      "31632",
+      "77012"
+    ],
+    "diagnoses": [
+      "R91.1 - Solitary pulmonary nodule",
+      "J44.9 - Chronic obstructive pulmonary disease"
+    ],
+    "requested_date": "2025-12-10",
+    "facility": "Fictional Teaching Hospital"
+  },
+  "clinical_summary": {
+    "finding": "18mm part-solid nodule in the right upper lobe, posterior segment. This is highly suspicious for primary lung malignancy.",
+    "location": "right upper lobe, posterior segment",
+    "nodule_size": "18 x 15 mm",
+    "characteristics": "spiculated margins with a solid component measuring approximately 12mm",
+    "lung_rads": "4B",
+    "suv_max": 4.2,
+    "risk_brock_percent": 68.0,
+    "risk_mayo_percent": 71.0,
+    "fev1_percent": 62.0,
+    "dlco_percent": 58.0,
+    "coagulation_status": null,
+    "laboratory_status": null,
+    "rationale": "Robotic-assisted bronchoscopy provides optimal approach for the peripheral lesion while reducing the pneumothorax risk associated with a transthoracic approach (underlying COPD with FEV1 62% predicted)."
+  },
+  "recommendation": {
+    "status": "MANUAL_REVIEW",
+    "reason": "Manual review required: missing_documents: labs; missing_fields: coagulation_status, laboratory_status; Preliminary tests do not document a clear barrier",
+    "criteria": [
+      {
+        "name": "Suspicious nodule requiring investigation",
+        "met": true,
+        "evidence": [
+          {
+            "document_id": "ct",
+            "page": 1,
+            "quote": "This is highly suspicious for primary lung malignancy."
+          }
+        ]
+      },
+      {
+        "name": "Tissue sampling recommended",
+        "met": true,
+        "evidence": [
+          {
+            "document_id": "ct",
+            "page": 1,
+            "quote": "Recommendation: PET-CT and tissue sampling recommended."
+          }
+        ]
+      },
+      {
+        "name": "Requested procedure supported by documented rationale",
+        "met": true,
+        "evidence": [
+          {
+            "document_id": "request",
+            "page": 1,
+            "quote": "Robotic-assisted bronchoscopy provides optimal approach for the peripheral lesion while reducing the pneumothorax risk associated with a transthoracic approach (underlying COPD with FEV1 62% predicted)."
+          }
+        ]
+      },
+      {
+        "name": "Preliminary tests do not document a clear barrier",
+        "met": false,
+        "evidence": [
+          {
+            "document_id": "pft",
+            "page": 1,
+            "quote": "From a pulmonary function standpoint, patient would tolerate bronchoscopic procedures."
+          }
+        ]
+      }
+    ]
+  },
+  "issues": [
+    {
+      "code": "missing_documents",
+      "severity": "blocking",
+      "detail": "labs"
+    },
+    {
+      "code": "missing_fields",
+      "severity": "blocking",
+      "detail": "coagulation_status, laboratory_status"
+    },
+    {
+      "code": "pet_secondary_source",
+      "severity": "warning",
+      "detail": "PET result is documented in request/clinical notes; no standalone PET report supplied"
+    }
+  ],
+  "observations": [
+    {
+      "field": "name",
+      "value": "Alex T. Example",
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Beneficiary Name:\nEXAMPLE, ALEX T."
+      }
+    },
+    {
+      "field": "date_of_birth",
+      "value": "1953-03-15",
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Date of Birth:\n03/15/1953"
+      }
+    },
+    {
+      "field": "lung_rads",
+      "value": "4B",
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Lung-RADS Classification: Category 4B"
+      }
+    },
+    {
+      "field": "suv_max",
+      "value": 4.2,
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "SUVmax 4.2"
+      }
+    },
+    {
+      "field": "risk_brock_percent",
+      "value": 68.0,
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Brock Model probability of malignancy: 68%"
+      }
+    },
+    {
+      "field": "risk_mayo_percent",
+      "value": 71.0,
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Mayo Clinic Model: 71%"
+      }
+    },
+    {
+      "field": "case_id",
+      "value": "PA-2025-100001",
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Tracking #:\nPA-2025-100001"
+      }
+    },
+    {
+      "field": "provider",
+      "value": "Demo Clinician, MD",
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Provider Name:\nDemo Clinician, MD"
+      }
+    },
+    {
+      "field": "procedure",
+      "value": "Robotic-Assisted Transbronchial Lung Biopsy",
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Procedure/Service:\nRobotic-Assisted Transbronchial Lung Biopsy"
+      }
+    },
+    {
+      "field": "cpt_codes",
+      "value": [
+        "31629",
+        "31632",
+        "77012"
+      ],
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "CPT Code(s):\n31629 - Demonstration procedure code\n31632 - Demonstration procedure code\n77012 - Demonstration procedure code\nICD-10 Diagnosis:"
+      }
+    },
+    {
+      "field": "diagnoses",
+      "value": [
+        "R91.1 - Solitary pulmonary nodule",
+        "J44.9 - Chronic obstructive pulmonary disease"
+      ],
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "ICD-10 Diagnosis:\nR91.1 - Solitary pulmonary nodule\nJ44.9 - Chronic obstructive pulmonary disease\nPlace of Service:"
+      }
+    },
+    {
+      "field": "facility",
+      "value": "Fictional Teaching Hospital",
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Facility:\nFictional Teaching Hospital"
+      }
+    },
+    {
+      "field": "requested_date",
+      "value": "2025-12-10",
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Requested DOS:\nDecember 10, 2025"
+      }
+    },
+    {
+      "field": "rationale",
+      "value": "Robotic-assisted bronchoscopy provides optimal approach for the peripheral lesion while reducing the pneumothorax risk associated with a transthoracic approach (underlying COPD with FEV1 62% predicted).",
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Robotic-assisted bronchoscopy provides optimal approach for the peripheral lesion while reducing the pneumothorax risk associated with a transthoracic approach (underlying COPD with FEV1 62% predicted)."
+      }
+    },
+    {
+      "field": "procedure_supported",
+      "value": true,
+      "evidence": {
+        "document_id": "request",
+        "page": 1,
+        "quote": "Robotic-assisted bronchoscopy provides optimal approach for the peripheral lesion while reducing the pneumothorax risk associated with a transthoracic approach (underlying COPD with FEV1 62% predicted)."
+      }
+    },
+    {
+      "field": "name",
+      "value": "Alex T. Example",
+      "evidence": {
+        "document_id": "clinical",
+        "page": 1,
+        "quote": "Patient:\nEXAMPLE, ALEX T."
+      }
+    },
+    {
+      "field": "date_of_birth",
+      "value": "1953-03-15",
+      "evidence": {
+        "document_id": "clinical",
+        "page": 1,
+        "quote": "DOB:\n03/15/1953"
+      }
+    },
+    {
+      "field": "mrn",
+      "value": "100001",
+      "evidence": {
+        "document_id": "clinical",
+        "page": 1,
+        "quote": "MRN:\n100001"
+      }
+    },
+    {
+      "field": "reported_age",
+      "value": 72.0,
+      "evidence": {
+        "document_id": "clinical",
+        "page": 1,
+        "quote": "72-year-old"
+      }
+    },
+    {
+      "field": "lung_rads",
+      "value": "4B",
+      "evidence": {
+        "document_id": "clinical",
+        "page": 1,
+        "quote": "Lung-RADS 4B"
+      }
+    },
+    {
+      "field": "suv_max",
+      "value": 4.2,
+      "evidence": {
+        "document_id": "clinical",
+        "page": 1,
+        "quote": "SUVmax of 4.2"
+      }
+    },
+    {
+      "field": "name",
+      "value": "Alex T. Example",
+      "evidence": {
+        "document_id": "ct",
+        "page": 1,
+        "quote": "Patient:\nEXAMPLE, ALEX T."
+      }
+    },
+    {
+      "field": "date_of_birth",
+      "value": "1953-03-15",
+      "evidence": {
+        "document_id": "ct",
+        "page": 1,
+        "quote": "DOB:\n03/15/1953"
+      }
+    },
+    {
+      "field": "mrn",
+      "value": "100001",
+      "evidence": {
+        "document_id": "ct",
+        "page": 1,
+        "quote": "MRN:\n100001"
+      }
+    },
+    {
+      "field": "lung_rads",
+      "value": "4B",
+      "evidence": {
+        "document_id": "ct",
+        "page": 1,
+        "quote": "Lung-RADS Category: 4B"
+      }
+    },
+    {
+      "field": "nodule_size",
+      "value": "18 x 15 mm",
+      "evidence": {
+        "document_id": "ct",
+        "page": 1,
+        "quote": "18 x 15 mm part-solid nodule"
+      }
+    },
+    {
+      "field": "location",
+      "value": "right upper lobe, posterior segment",
+      "evidence": {
+        "document_id": "ct",
+        "page": 1,
+        "quote": "nodule in the right upper lobe, posterior segment"
+      }
+    },
+    {
+      "field": "location",
+      "value": "right upper lobe, posterior segment",
+      "evidence": {
+        "document_id": "ct",
+        "page": 1,
+        "quote": "nodule in the right upper lobe, posterior segment"
+      }
+    },
+    {
+      "field": "characteristics",
+      "value": "spiculated margins with a solid component measuring approximately 12mm",
+      "evidence": {
+        "document_id": "ct",
+        "page": 1,
+        "quote": "spiculated margins with a solid component measuring approximately 12mm"
+      }
+    },
+    {
+      "field": "finding",
+      "value": "18mm part-solid nodule in the right upper lobe, posterior segment. This is highly suspicious for primary lung malignancy.",
+      "evidence": {
+        "document_id": "ct",
+        "page": 1,
+        "quote": "18mm part-solid nodule in the right upper lobe, posterior segment. This is highly suspicious for primary lung malignancy."
+      }
+    },
+    {
+      "field": "suspicious_nodule",
+      "value": true,
+      "evidence": {
+        "document_id": "ct",
+        "page": 1,
+        "quote": "This is highly suspicious for primary lung malignancy."
+      }
+    },
+    {
+      "field": "tissue_sampling",
+      "value": true,
+      "evidence": {
+        "document_id": "ct",
+        "page": 1,
+        "quote": "Recommendation: PET-CT and tissue sampling recommended."
+      }
+    },
+    {
+      "field": "name",
+      "value": "Alex T. Example",
+      "evidence": {
+        "document_id": "pft",
+        "page": 1,
+        "quote": "Patient:\nEXAMPLE, ALEX T."
+      }
+    },
+    {
+      "field": "date_of_birth",
+      "value": "1953-03-15",
+      "evidence": {
+        "document_id": "pft",
+        "page": 1,
+        "quote": "DOB:\n03/15/1953"
+      }
+    },
+    {
+      "field": "mrn",
+      "value": "100001",
+      "evidence": {
+        "document_id": "pft",
+        "page": 1,
+        "quote": "MRN:\n100001"
+      }
+    },
+    {
+      "field": "fev1_percent",
+      "value": 62.0,
+      "evidence": {
+        "document_id": "pft",
+        "page": 1,
+        "quote": "FEV1 62% predicted"
+      }
+    },
+    {
+      "field": "dlco_percent",
+      "value": 58.0,
+      "evidence": {
+        "document_id": "pft",
+        "page": 1,
+        "quote": "DLCO 58% predicted"
+      }
+    },
+    {
+      "field": "pulmonary_acceptable",
+      "value": true,
+      "evidence": {
+        "document_id": "pft",
+        "page": 1,
+        "quote": "From a pulmonary function standpoint, patient would tolerate bronchoscopic procedures."
+      }
+    }
+  ],
+  "documents": [
+    {
+      "id": "request",
+      "filename": "request.txt",
+      "role": "request",
+      "sha256": "f636ea251ee0bc544738d4fba99712ed0b1203b8de3ba029066ae2fa0f1f3fb8",
+      "pages": [
+        {
+          "number": 1,
+          "text": "DEMONSTRATION ONLY — FICTIONAL AUTHORIZATION REQUEST\nBeneficiary Name:\nEXAMPLE, ALEX T.\nDate of Birth:\n03/15/1953\nTracking #:\nPA-2025-100001\nProvider Name:\nDemo Clinician, MD\nProcedure/Service:\nRobotic-Assisted Transbronchial Lung Biopsy\nCPT Code(s):\n31629 - Demonstration procedure code\n31632 - Demonstration procedure code\n77012 - Demonstration procedure code\nICD-10 Diagnosis:\nR91.1 - Solitary pulmonary nodule\nJ44.9 - Chronic obstructive pulmonary disease\nPlace of Service:\nDemo outpatient facility\nFacility:\nFictional Teaching Hospital\nRequested DOS:\nDecember 10, 2025\nLung-RADS Classification: Category 4B\nBrock Model probability of malignancy: 68%.\nMayo Clinic Model: 71%.\nPET summary: SUVmax 4.2.\nRobotic-assisted bronchoscopy provides optimal approach for the peripheral lesion while reducing the pneumothorax risk associated with a transthoracic approach (underlying COPD with FEV1 62% predicted).\n",
+          "method": "text",
+          "usable": true,
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "id": "clinical",
+      "filename": "clinical.txt",
+      "role": "clinical",
+      "sha256": "59d60b06d6fe83178524ba01d3e152e5af6a78923d2bfc691b612631c6a1d21b",
+      "pages": [
+        {
+          "number": 1,
+          "text": "Patient:\nEXAMPLE, ALEX T.\nDOB:\n03/15/1953\nMRN:\n100001\nFICTIONAL CLINICAL NOTE\n72-year-old adult. Lung-RADS 4B.\nPET-CT summary records SUVmax of 4.2.\nThe treating clinician recommends tissue diagnosis and the robotic-assisted approach because of the peripheral lesion location and underlying COPD.\n",
+          "method": "text",
+          "usable": true,
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "id": "ct",
+      "filename": "ct.txt",
+      "role": "ct",
+      "sha256": "3eacd6cfbfcab089f1465a9c81f5e8d4375a6abfadd94b488ed5e4cd897e37b0",
+      "pages": [
+        {
+          "number": 1,
+          "text": "Patient:\nEXAMPLE, ALEX T.\nDOB:\n03/15/1953\nMRN:\n100001\nFICTIONAL CT REPORT\nThere is an 18 x 15 mm part-solid nodule in the right upper lobe, posterior segment.\nThe nodule demonstrates spiculated margins with a solid component measuring approximately 12mm.\nIMPRESSION: 18mm part-solid nodule in the right upper lobe, posterior segment. This is highly suspicious for primary lung malignancy.\nLung-RADS Category: 4B\nRecommendation: PET-CT and tissue sampling recommended.\n",
+          "method": "text",
+          "usable": true,
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "id": "pft",
+      "filename": "pft.txt",
+      "role": "pft",
+      "sha256": "9c6dc9d24c80f971d002ec8da4748b2a338ae01411e2f89357bfa3b3c60318ea",
+      "pages": [
+        {
+          "number": 1,
+          "text": "Patient:\nEXAMPLE, ALEX T.\nDOB:\n03/15/1953\nMRN:\n100001\nFICTIONAL PULMONARY FUNCTION REPORT\nPre-bronchodilator FEV1 62% predicted. Post-bronchodilator FEV1 is 66% predicted.\nDLCO 58% predicted.\nFrom a pulmonary function standpoint, patient would tolerate bronchoscopic procedures.\n",
+          "method": "text",
+          "usable": true,
+          "warnings": []
+        }
+      ]
+    }
+  ],
+  "trace": [
+    {
+      "stage": "read",
+      "document_id": "request",
+      "status": "completed",
+      "seconds": 0.471
+    },
+    {
+      "stage": "extract",
+      "document_id": "request",
+      "status": "completed",
+      "cached": false,
+      "seconds": 0.002,
+      "usage": {}
+    },
+    {
+      "stage": "read",
+      "document_id": "clinical",
+      "status": "completed",
+      "seconds": 0.457
+    },
+    {
+      "stage": "extract",
+      "document_id": "clinical",
+      "status": "completed",
+      "cached": false,
+      "seconds": 0.0,
+      "usage": {}
+    },
+    {
+      "stage": "read",
+      "document_id": "ct",
+      "status": "completed",
+      "seconds": 0.335
+    },
+    {
+      "stage": "extract",
+      "document_id": "ct",
+      "status": "completed",
+      "cached": false,
+      "seconds": 0.0,
+      "usage": {}
+    },
+    {
+      "stage": "read",
+      "document_id": "pft",
+      "status": "completed",
+      "seconds": 0.413
+    },
+    {
+      "stage": "extract",
+      "document_id": "pft",
+      "status": "completed",
+      "cached": false,
+      "seconds": 0.0,
+      "usage": {}
+    }
+  ]
+}

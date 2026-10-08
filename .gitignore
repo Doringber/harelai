@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+*.sqlite*
+output/
+input/
+*.egg-info/
+.DS_Store
+ai.zip
+space-ready/
