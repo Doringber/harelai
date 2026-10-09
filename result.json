@@ -1,0 +1,103 @@
+{
+  "case_id": "PA-2025-847291",
+  "patient": {
+    "name": "Margaret A. Johnson",
+    "date_of_birth": "1952-03-15",
+    "mrn": "847291"
+  },
+  "request": {
+    "procedure": "Robotic-Assisted Transbronchial Lung Biopsy",
+    "cpt_codes": [
+      "31629",
+      "31632",
+      "77012"
+    ],
+    "requested_date": "2025-12-10",
+    "provider": "David Chen, MD",
+    "diagnoses": [
+      "R91.1",
+      "F17.211",
+      "J44.9",
+      "Z77.22"
+    ],
+    "facility": "UC Davis Medical Center, Sacramento, CA"
+  },
+  "clinical_summary": {
+    "finding": "Suspicious right upper lobe pulmonary nodule",
+    "nodule_size": "18 x 15 mm",
+    "lung_rads": "4B",
+    "suv_max": 4.2,
+    "fev1_percent": 62,
+    "dlco_percent": 58,
+    "coagulation_status": "Normal",
+    "location": "right upper lobe, posterior segment",
+    "characteristics": "spiculated margins with a solid component measuring approximately 12mm. The ground-glass component measures approximately 6mm in greatest dimension.",
+    "malignancy_risk": "68%",
+    "procedure_rationale": "Robotic-assisted bronchoscopy with electromagnetic navigation and CT fluoroscopy guidance provides optimal approach for this peripheral lesion while minimizing pneumothorax risk compared to CT-guided transthoracic needle biopsy (patient has underlying COPD with FEV1 62% predicted)."
+  },
+  "recommendation": {
+    "status": "APPROVE",
+    "reason": "The clinical findings support tissue diagnosis of a suspicious right upper lobe pulmonary nodule (Lung-RADS 4B), and the requested procedure is appropriate based on the lesion location and the patient's COPD (FEV1 62% predicted)."
+  },
+  "rules": {
+    "Suspicious nodule requiring investigation": true,
+    "Tissue sampling recommended": true,
+    "Requested procedure fits the findings and the patient": true,
+    "Preliminary tests show no clear barrier": true
+  },
+  "issues": [],
+  "evidence": {
+    "request": {
+      "patient_name": "Beneficiary Name: JOHNSON, MARGARET A.",
+      "date_of_birth": "Date of Birth: 03/15/1952",
+      "case_id": "Tracking #: PA-2025-847291",
+      "provider": "Provider Name: David Chen, MD",
+      "procedure": "Procedure/Service: Robotic-Assisted Transbronchial Lung Biopsy",
+      "cpt_codes": "CPT Code(s):\n31629 - Bronchoscopy with transbronchial lung biopsy\n31632 - Bronchoscopy with transbronchial lung biopsy, each additional lobe\n77012 - CT guidance for needle placement",
+      "diagnoses": "ICD-10 Diagnosis: R91.1 - Solitary pulmonary nodule\nF17.211 - Nicotine dependence, cigarettes, in remission\nJ44.9 - Chronic obstructive pulmonary disease, unspecified\nZ77.22 - Contact with and exposure to environmental tobacco smoke",
+      "requested_date": "Requested DOS: December 10, 2025",
+      "facility": "Facility: UC Davis Medical Center, Sacramento, CA",
+      "suv_max": "PET-CT on 10/28/2025 demonstrated moderate FDG uptake (SUVmax 4.2), concerning for malignancy.",
+      "rationale": "Robotic-assisted bronchoscopy with electromagnetic navigation and CT fluoroscopy guidance provides optimal approach for this peripheral lesion while minimizing pneumothorax risk compared to CT-guided transthoracic needle biopsy (patient has underlying COPD with FEV1 62% predicted).",
+      "procedure_supported": "Robotic-assisted bronchoscopy with electromagnetic navigation and CT fluoroscopy guidance provides optimal approach for this peripheral lesion while minimizing pneumothorax risk compared to CT-guided transthoracic needle biopsy (patient has underlying COPD with FEV1 62% predicted)."
+    },
+    "clinical": {
+      "patient_name": "Patient:\nJOHNSON, MARGARET A.",
+      "date_of_birth": "DOB: 03/15/1952",
+      "mrn": "MRN: 847291",
+      "suv_max": "PET-CT (10/28/2025): FDG-avid RUL nodule, SUVmax 4.2. No mediastinal or hilar lymph node uptake. No evidence of distant metastatic disease.",
+      "malignancy_risk": "Brock model probability of malignancy 68%.",
+      "rationale": "Lower pneumothorax risk (important given underlying COPD)",
+      "suspicious_nodule": "1. Right upper lobe pulmonary nodule, suspicious for malignancy - 18mm part-solid nodule with spiculated margins and FDG-avidity (SUVmax 4.2).",
+      "tissue_sampling": "1. Tissue Diagnosis: Recommend robotic-assisted transbronchial biopsy with electromagnetic navigation and CT fluoroscopy guidance.",
+      "procedure_supported": "This approach is preferred over CT-guided transthoracic biopsy given: - Peripheral location accessible via airways - Lower pneumothorax risk (important given underlying COPD) - Ability to sample mediastinal nodes if needed"
+    },
+    "ct": {
+      "patient_name": "JOHNSON, MARGARET A.",
+      "date_of_birth": "DOB: 03/15/1952",
+      "mrn": "MRN: 847291",
+      "location": "There is an 18 x 15 mm part-solid nodule in the right upper lobe, posterior segment (series 3, image 47).",
+      "nodule_size": "There is an 18 x 15 mm part-solid nodule in the right upper lobe, posterior segment (series 3, image 47).",
+      "characteristics": "The nodule demonstrates spiculated margins with a solid component measuring approximately 12mm. The ground-glass component measures approximately 6mm in greatest dimension.",
+      "lung_rads": "Lung-RADS Category: 4B",
+      "suspicious_nodule": "18mm part-solid nodule in the right upper lobe, posterior segment, with 12mm solid component and spiculated margins. This is highly suspicious for primary lung malignancy.",
+      "tissue_sampling": "Recommendation: PET-CT and tissue sampling recommended."
+    },
+    "labs": {
+      "patient_name": "Patient:\nJOHNSON, MARGARET A.",
+      "date_of_birth": "DOB: 03/15/1952",
+      "mrn": "MRN: 847291",
+      "coagulation_status": "No evidence of coagulopathy.",
+      "labs_acceptable": "Patient is suitable for invasive procedures from a hematologic and metabolic standpoint."
+    },
+    "pft": {
+      "patient_name": "Patient:\nJOHNSON, MARGARET A.",
+      "date_of_birth": "DOB: 03/15/1952 (Age: 73)",
+      "mrn": "MRN: 847291",
+      "fev1_percent": "FEV1 (L) 1.52 2.45 62%",
+      "dlco_percent": "DLCO (mL/min/mmHg) 14.2 24.5 58% Moderately Reduced",
+      "pulmonary_acceptable": "From a pulmonary function standpoint, patient would tolerate bronchoscopic procedures."
+    }
+  },
+  "model": "gemma4"
+}

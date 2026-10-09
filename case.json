@@ -1,0 +1,9 @@
+{
+  "documents": [
+    {"role": "request", "path": "ai/01_Prior_Auth_Request_Form.pdf"},
+    {"role": "clinical", "path": "ai/02_Clinical_Notes_H_and_P.pdf"},
+    {"role": "ct", "path": "ai/03_CT_Chest_Report.pdf"},
+    {"role": "labs", "path": "ai/04_Laboratory_Results.pdf"},
+    {"role": "pft", "path": "ai/05_Pulmonary_Function_Tests.pdf"}
+  ]
+}
