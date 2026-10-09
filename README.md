@@ -58,7 +58,43 @@ To use another local model or case file:
 python -m approval path/to/case.json --model MODEL_NAME --output path/to/result.json
 ~~~
 
-Each case JSON lists documents with a role (`request`, `clinical`, `ct`, `labs`, or `pft`) and a path relative to that JSON file.
+## Use a different set of PDFs
+
+Put the new PDFs together with a case JSON file. In the JSON, point each role at the PDF that contains that kind of information. Paths are relative to the case JSON file. For example, if the files are in `cases/new-case/`:
+
+~~~json
+{
+  "documents": [
+    {"role": "request", "path": "request.pdf"},
+    {"role": "clinical", "path": "clinical-notes.pdf"},
+    {"role": "ct", "path": "ct-report.pdf"},
+    {"role": "labs", "path": "lab-report.pdf"},
+    {"role": "pft", "path": "pulmonary-function.pdf"}
+  ]
+}
+~~~
+
+Save that as `cases/new-case/case.json`, alongside those five PDFs, then run:
+
+~~~bash
+python -m approval cases/new-case/case.json \
+  --model gemma4 \
+  --output cases/new-case/result.json
+~~~
+
+The role tells the extractor which fields to look for; the filename itself does not determine the check:
+
+| Role | Fields used in review |
+|---|---|
+| `request` | Requested procedure, codes, diagnoses, date, provider, facility, and procedure rationale |
+| `clinical` | Clinical findings, biopsy recommendation, procedure fit, and contraindications |
+| `ct` | Nodule location, size, characteristics, Lung-RADS, suspicion, and biopsy recommendation |
+| `labs` | Coagulation and laboratory suitability for an invasive procedure |
+| `pft` | FEV1, DLCO, pulmonary suitability, and contraindications |
+
+The decision rules then combine those extracted facts: CT or clinical notes can support suspicion and tissue sampling; the request or clinical notes can support procedure fit; both labs and PFT must support preliminary suitability. All four rules must pass, with no blocking issue, for `APPROVE`. A missing role, identity mismatch, or unsupported rule leads to `MANUAL_REVIEW`. Use a separate case JSON and output path for each PDF packet so each run has its own result.
+
+For example, the included alternate packet maps five different synthetic PDFs in [`ai/alternate_case/case.json`](ai/alternate_case/case.json) and writes its result to [`ai/alternate_case/result.json`](ai/alternate_case/result.json).
 
 ## Run the alternate fictional case
 
