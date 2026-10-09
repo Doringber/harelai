@@ -29,28 +29,78 @@ The generated recommendation explanation, rule descriptions, issue descriptions,
 
 ## Requirements
 
-- Python 3.11 or newer
-- [Ollama](https://ollama.com) running locally
-- Gemma 4 (or another locally installed Ollama model)
+- [Git](https://git-scm.com/downloads)
+- [Python 3.11 or newer](https://www.python.org/downloads/)
+- [Ollama](https://ollama.com/download), installed and running locally
 
-Install the model and project:
+## First run: clone the project and see the result
 
-~~~bash
+Follow these steps from a terminal. The supplied case uses the five PDFs listed in `case.json`.
+
+### macOS or Linux
+
+1. Clone the GitHub repository and enter its folder:
+
+   ~~~bash
+   git clone https://github.com/Doringber/harelai.git
+   cd harelai
+   ~~~
+
+2. Download Gemma 4. This downloads the local model and may take a while. Make sure Ollama is installed and running first.
+
+   ~~~bash
+   ollama pull gemma4
+   ~~~
+
+3. Create a Python environment and install the project. Run these commands from inside the `harelai` folder:
+
+   ~~~bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   python -m pip install --upgrade pip
+   python -m pip install -e .
+   ~~~
+
+4. Review the supplied case. The program prints Hebrew progress and its recommendation, then saves the complete result as `result.json` in the project folder.
+
+   ~~~bash
+   python -m approval case.json --model gemma4 --output result.json
+   ~~~
+
+5. Print just the decision and its Hebrew explanation:
+
+   ~~~bash
+   python -c 'import json; r=json.load(open("result.json", encoding="utf-8"))["recommendation"]; print("Status:", r["status"]); print("Hebrew explanation:", r["reason"])'
+   ~~~
+
+   To inspect every field, including the evidence quotes, run `python -m json.tool result.json` or open `result.json` in a text editor. The supplied case currently returns `APPROVE`; model and hardware differences can affect extraction and the result.
+
+### Windows PowerShell
+
+Install Git, Python 3.11 or newer, and [Ollama for Windows](https://ollama.com/download), then open PowerShell. Clone the project and download the model:
+
+~~~powershell
+git clone https://github.com/Doringber/harelai.git
+cd harelai
 ollama pull gemma4
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -e ".[dev]"
 ~~~
 
-## Run the supplied case
+Create the Python environment and install the project with its Python executable:
 
-From the repository root:
-
-~~~bash
-python -m approval case.json --model gemma4 --output result.json
+~~~powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install -e .
 ~~~
 
-The command reads the five PDFs listed in `case.json`, prints Hebrew progress and the recommendation, and writes the complete JSON result to `result.json`.
+Run the supplied case and print the decision with its Hebrew explanation:
+
+~~~powershell
+.\.venv\Scripts\python.exe -m approval case.json --model gemma4 --output result.json
+.\.venv\Scripts\python.exe -c 'import json; r=json.load(open("result.json", encoding="utf-8"))["recommendation"]; print("Status:", r["status"]); print("Hebrew explanation:", r["reason"])'
+~~~
+
+Keep Ollama running while the review command runs. When you open a new terminal later, go back to the project folder. On macOS or Linux, activate the environment again with `source .venv/bin/activate`; on Windows, run the app using the Python executable shown above.
 
 To use another local model or case file:
 
