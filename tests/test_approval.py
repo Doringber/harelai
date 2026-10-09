@@ -53,7 +53,7 @@ def test_complete_case_is_approved():
     assert result["patient"]["name"] == "Margaret A. Johnson"
     assert result["clinical_summary"]["fev1_percent"] == 62
     assert result["clinical_summary"]["finding"] == "נודול חשוד באונה הימנית העליונה"
-    assert "האונה הימנית העליונה" in result["recommendation"]["reason"] and "COPD" in result["recommendation"]["reason"]
+    assert "באונה הימנית העליונה" in result["recommendation"]["reason"] and "COPD" in result["recommendation"]["reason"]
 
 
 def test_missing_rule_needs_manual_review():
