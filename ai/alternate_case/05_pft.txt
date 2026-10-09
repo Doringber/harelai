@@ -1,0 +1,7 @@
+FICTIONAL PULMONARY FUNCTION REPORT — ALTERNATE CASE
+Patient: TAYLOR SAMPLE
+DOB: 01/10/1960
+MRN: ALT-200002
+Pre-bronchodilator FEV1 is 88% predicted.
+DLCO is 82% predicted.
+From a pulmonary function standpoint, the patient would tolerate bronchoscopic procedures.

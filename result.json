@@ -23,7 +23,7 @@
     "facility": "UC Davis Medical Center, Sacramento, CA"
   },
   "clinical_summary": {
-    "finding": "Suspicious right upper lobe pulmonary nodule",
+    "finding": "נודול חשוד באונה הימנית העליונה",
     "nodule_size": "18 x 15 mm",
     "lung_rads": "4B",
     "suv_max": 4.2,
@@ -37,13 +37,13 @@
   },
   "recommendation": {
     "status": "APPROVE",
-    "reason": "The clinical findings support tissue diagnosis of a suspicious right upper lobe pulmonary nodule (Lung-RADS 4B), and the requested procedure is appropriate based on the lesion location and the patient's COPD (FEV1 62% predicted)."
+    "reason": "הממצאים הקליניים תומכים בדגימת רקמה מנודול חשוד באונה הימנית העליונה (Lung-RADS 4B). הפרוצדורה המבוקשת מתאימה למיקום הנגע ולמצב הריאתי המתואר במסמכים על רקע COPD (FEV1 של 62% מהצפוי)."
   },
   "rules": {
-    "Suspicious nodule requiring investigation": true,
-    "Tissue sampling recommended": true,
-    "Requested procedure fits the findings and the patient": true,
-    "Preliminary tests show no clear barrier": true
+    "נודול חשוד המצריך בירור": true,
+    "הומלצה דגימת רקמה": true,
+    "הפרוצדורה המבוקשת מתאימה לממצאים ולמצב הרפואי": true,
+    "הבדיקות המקדימות אינן מצביעות על מניעה ברורה": true
   },
   "issues": [],
   "evidence": {

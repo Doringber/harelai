@@ -1,101 +1,107 @@
-# Medical prior authorization review (local AI)
+# Medical prior-authorization review
 
-Reads the five supplied medical documents for a robotic-assisted lung biopsy request and returns
-**APPROVE** or **MANUAL_REVIEW** with a reason. The AI runs locally with [Ollama](https://ollama.com),
-so no document leaves your machine and no API key is needed.
+A local AI workflow that reads a prior-authorization packet for robotic-assisted lung biopsy and returns **`APPROVE`** or **`MANUAL_REVIEW`** with a Hebrew explanation. PDFs and model requests stay on the local machine through Ollama; no hosted model API key is used.
 
-## How to run
+## Codex plugin marketplace (optional)
 
-Requires Python 3.11+ and Ollama.
+To register the Anidoodle marketplace with Codex, run:
 
-```bash
-ollama pull gemma4                      # once, ~10 GB
-python3 -m venv .venv && source .venv/bin/activate
+~~~bash
+codex plugin marketplace add alexgreensh/anidoodle
+~~~
+
+This adds the marketplace source to Codex. It is separate from this app's runtime: the review application still runs with Python and local Ollama. See the [official Codex plugin documentation](https://developers.openai.com/plugins/build/plugins) for marketplace management.
+
+## Architecture
+
+~~~mermaid
+flowchart LR
+    A[Five medical PDFs] --> B[approval/read.py<br/>PyMuPDF text extraction]
+    B --> C[approval/extract.py<br/>one-field Gemma extraction via Ollama]
+    C --> D[approval/check.py<br/>quotes, dates, patient identity]
+    D --> E[approval/decide.py<br/>deterministic approval rules]
+    E --> F[result.json<br/>decision and evidence]
+~~~
+
+The model extracts a value and a supporting quote for one field at a time. Python checks that the quote appears in its source document, normalizes dates, compares patient identity, and applies the assignment's four rules. The model does not choose the authorization status.
+
+The generated recommendation explanation, rule descriptions, issue descriptions, and console messages are in Hebrew. JSON field names and status codes remain stable in English (`APPROVE` and `MANUAL_REVIEW`); identifiers, codes, extracted values, and verbatim evidence quotes retain their source form.
+
+## Requirements
+
+- Python 3.11 or newer
+- [Ollama](https://ollama.com) running locally
+- Gemma 4 (or another locally installed Ollama model)
+
+Install the model and project:
+
+~~~bash
+ollama pull gemma4
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -e ".[dev]"
-python -m approval                      # reads case.json, writes result.json (~1.5 min)
-pytest tests -q                         # 11 tests, no Ollama needed
-```
+~~~
 
-Options: `python -m approval my_case.json --model qwen3-coder:30b --output out.json`.
-`case.json` lists each document and its role (`request`, `clinical`, `ct`, `labs`, `pft`).
+## Run the supplied case
 
-## Output for the supplied case
+From the repository root:
 
-The full output is in [`result.json`](result.json). It starts with the required fields:
+~~~bash
+python -m approval case.json --model gemma4 --output result.json
+~~~
 
-```json
-{
-  "case_id": "PA-2025-847291",
-  "patient": { "name": "Margaret A. Johnson", "date_of_birth": "1952-03-15", "mrn": "847291" },
-  "request": {
-    "procedure": "Robotic-Assisted Transbronchial Lung Biopsy",
-    "cpt_codes": ["31629", "31632", "77012"],
-    "requested_date": "2025-12-10",
-    "provider": "David Chen, MD",
-    "diagnoses": ["R91.1", "F17.211", "J44.9", "Z77.22"],
-    "facility": "UC Davis Medical Center, Sacramento, CA"
-  },
-  "clinical_summary": {
-    "finding": "Suspicious right upper lobe pulmonary nodule",
-    "nodule_size": "18 x 15 mm",
-    "lung_rads": "4B",
-    "suv_max": 4.2,
-    "fev1_percent": 62,
-    "dlco_percent": 58,
-    "coagulation_status": "Normal",
-    "location": "right upper lobe, posterior segment",
-    "malignancy_risk": "68%",
-    "...": "..."
-  },
-  "recommendation": {
-    "status": "APPROVE",
-    "reason": "The clinical findings support tissue diagnosis of a suspicious right upper lobe pulmonary nodule (Lung-RADS 4B), and the requested procedure is appropriate based on the lesion location and the patient's COPD (FEV1 62% predicted)."
-  }
-}
-```
+The command reads the five PDFs listed in `case.json`, prints Hebrew progress and the recommendation, and writes the complete JSON result to `result.json`.
 
-After these come `rules` (each rule met or not), `issues` (anything that needs attention) and `evidence`
-(the exact sentence each value was taken from).
+To use another local model or case file:
 
-## How the recommendation is made
+~~~bash
+python -m approval path/to/case.json --model MODEL_NAME --output path/to/result.json
+~~~
 
-The model only reads. Plain code checks its answers and makes the decision.
+Each case JSON lists documents with a role (`request`, `clinical`, `ct`, `labs`, or `pft`) and a path relative to that JSON file.
 
-1. **Read** each PDF into text (`approval/read.py`).
-2. **Extract** (`approval/extract.py`). Each document type has a short list of fields. The local model is
-   asked **one field at a time**, and must return the value plus an exact quote from the document,
-   or `found: false`.
-3. **Check** (`approval/check.py`):
-   - the quote must really appear in the document, and a number must appear in its quote. Otherwise the
-     answer is dropped;
-   - all five documents must be present and name the same patient (name, date of birth, MRN);
-   - dates are converted to one format in code; the model's date format is not trusted.
-4. **Decide** (`approval/decide.py`). APPROVE only when all four assignment rules hold:
+## Run the alternate fictional case
 
-   | Rule | Proven by |
-   |---|---|
-   | Suspicious nodule requiring investigation | CT report or clinical notes |
-   | Tissue sampling recommended | CT report or clinical notes |
-   | Requested procedure fits the findings and the patient | request form or clinical notes |
-   | Preliminary tests show no clear barrier | lab report **and** PFT report |
+The repository includes a synthetic second case to demonstrate a request that is not supported by the records. Rebuild its text PDFs if needed, then run it:
 
-   Anything else is MANUAL_REVIEW: a rule not proven, a stated contraindication, a missing document,
-   a different patient, or a dropped answer that argued against approval. A rule counts as met only when
-   a document says so in words, so there are no invented medical thresholds for FEV1 or SUV.
-   There is no rejection path, as the assignment requested.
+~~~bash
+python ai/alternate_case/build_pdfs.py
+python -m approval ai/alternate_case/case.json \
+  --model gemma4:latest \
+  --output ai/alternate_case/result.json
+~~~
 
-## Limits and what I would improve with more time
+The current run returns `MANUAL_REVIEW`: the records describe a stable Lung-RADS 2 nodule and recommend imaging surveillance rather than tissue sampling. The full output is in `ai/alternate_case/result.json`.
 
-- **Tested on one case.** Three runs of the supplied case all returned APPROVE with no issues. With the
-  lab report's "suitable for invasive procedures" sentence removed, it returned MANUAL_REVIEW on
-  "Preliminary tests show no clear barrier", as it should. That doesn't prove it works on other cases.
-  *Next:* a small evaluation set (missing documents, contradictions, contraindications), measuring
-  accuracy per field.
-- **A real quote is not proof of meaning.** The check confirms the quote exists, not that it supports
-  the value.
-  *Next:* a second check (another model or rules) on the decision-critical fields.
-- **Text PDFs only.** Scanned PDFs are reported and stop approval; there is no OCR.
-- **Speed.** One question per call takes about 1.5 minutes per case on a laptop.
-  *Next:* group the easy fields into one call.
-- **Not a clinical system.** It supports a human reviewer for this assignment; it is not a validated
-  medical or insurance decision.
+## Decision rules
+
+The app returns `APPROVE` only when all four rules are supported by the specified documents and no blocking issue is present:
+
+| Rule | Evidence source |
+|---|---|
+| Suspicious nodule requiring investigation | CT report or clinical notes |
+| Tissue sampling recommended | CT report or clinical notes |
+| Requested procedure fits the findings and patient | Request form or clinical notes |
+| Preliminary tests show no clear barrier | Laboratory report and PFT report |
+
+Otherwise the app returns `MANUAL_REVIEW`. There is no automatic rejection path.
+
+## Output
+
+The complete output for the supplied case is in [`result.json`](result.json). It includes patient and request fields, clinical summary, Hebrew recommendation, rule outcomes, issues, exact source quotes, and the model name.
+
+## Tests
+
+The project has unit tests that use stubbed model answers and do not require Ollama:
+
+~~~bash
+pytest tests -q
+~~~
+
+## Known limits
+
+- Text PDFs are supported; scanned PDFs require OCR, which is not included.
+- Quote checking confirms that text occurs in a document; it does not prove that the quote semantically supports the extracted value.
+- Patient name and date of birth are required for each processed document. MRN mismatches are checked when MRNs are present, but a missing MRN is not currently a blocking issue.
+- Extraction is one model call per field, so a review can take about one minute or more depending on hardware and model.
+- This is an assignment demonstration to support human review, not a validated clinical or insurance decision system.

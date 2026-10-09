@@ -1,0 +1,9 @@
+FICTIONAL CT CHEST REPORT — ALTERNATE CASE
+Patient: TAYLOR SAMPLE
+DOB: 01/10/1960
+MRN: ALT-200002
+There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.
+No spiculated margins or suspicious interval growth are identified.
+The nodule is not suspicious for primary lung malignancy.
+Lung-RADS Category: 2
+Recommendation: Continue annual low-dose CT surveillance. Tissue sampling is not recommended.

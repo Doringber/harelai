@@ -52,8 +52,8 @@ def test_complete_case_is_approved():
     assert result["recommendation"]["status"] == "APPROVE"
     assert result["patient"]["name"] == "Margaret A. Johnson"
     assert result["clinical_summary"]["fev1_percent"] == 62
-    assert result["clinical_summary"]["finding"] == "Suspicious right upper lobe pulmonary nodule"
-    assert "right upper lobe" in result["recommendation"]["reason"] and "COPD" in result["recommendation"]["reason"]
+    assert result["clinical_summary"]["finding"] == "נודול חשוד באונה הימנית העליונה"
+    assert "האונה הימנית העליונה" in result["recommendation"]["reason"] and "COPD" in result["recommendation"]["reason"]
 
 
 def test_missing_rule_needs_manual_review():
@@ -61,7 +61,7 @@ def test_missing_rule_needs_manual_review():
     del answers["ct"]["tissue_sampling"], answers["clinical"]["tissue_sampling"]
     result = review(answers)
     assert result["recommendation"]["status"] == "MANUAL_REVIEW"
-    assert "Tissue sampling recommended" in result["recommendation"]["reason"]
+    assert "לא הוכחה המלצה לדגימת רקמה" in result["recommendation"]["reason"]
 
 
 def test_contraindication_needs_manual_review():
@@ -75,7 +75,7 @@ def test_invented_quote_is_dropped():
     answers["ct"]["nodule_size"] = fact("30 x 30 mm", "a 30 x 30 mm mass")  # not in the document
     result = review(answers)
     assert result["clinical_summary"]["nodule_size"] is None
-    assert any("ct.nodule_size" in i["detail"] for i in result["issues"])
+    assert any("דו״ח ה־CT" in i["detail"] and "הציטוט" in i["detail"] for i in result["issues"])
 
 
 def test_dropped_no_answer_blocks_approval():
@@ -114,7 +114,7 @@ def test_different_patient_blocks_approval():
     facts, issues = check(texts, answers)
     result = build_result(facts, issues, "test")
     assert result["recommendation"]["status"] == "MANUAL_REVIEW"
-    assert "date_of_birth" in result["recommendation"]["reason"]
+    assert "תאריך הלידה" in result["recommendation"]["reason"]
 
 
 def test_missing_document_blocks_approval():
@@ -122,7 +122,7 @@ def test_missing_document_blocks_approval():
     del answers["labs"]
     result = review(answers)
     assert result["recommendation"]["status"] == "MANUAL_REVIEW"
-    assert "missing document: labs" in result["recommendation"]["reason"]
+    assert "חסר מסמך: בדיקות המעבדה" in result["recommendation"]["reason"]
 
 
 def test_real_pdfs_are_read_and_one_failure_does_not_stop_the_rest():
@@ -138,4 +138,4 @@ def test_real_pdfs_are_read_and_one_failure_does_not_stop_the_rest():
     result = run_case(ROOT / "case.json", "fake", fake_model)
     assert seen == ["request", "clinical", "ct", "labs", "pft"]
     assert result["recommendation"]["status"] == "MANUAL_REVIEW"
-    assert any("labs: could not process" in i["detail"] for i in result["issues"])
+    assert any("לא ניתן לעבד" in i["detail"] and "בדיקות המעבדה" in i["detail"] for i in result["issues"])

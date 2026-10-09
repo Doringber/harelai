@@ -1,0 +1,8 @@
+FICTIONAL LABORATORY REPORT — ALTERNATE CASE
+Patient: TAYLOR SAMPLE
+DOB: 01/10/1960
+MRN: ALT-200002
+PT 12.0 seconds; INR 1.0; PTT 29 seconds.
+All values are within normal limits.
+The patient is suitable for invasive procedures from a hematologic and metabolic standpoint.
+No evidence of coagulopathy.

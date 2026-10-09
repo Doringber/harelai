@@ -1,0 +1,12 @@
+FICTIONAL AUTHORIZATION REQUEST — ALTERNATE CASE
+Beneficiary Name: TAYLOR SAMPLE
+Date of Birth: 01/10/1960
+MRN: ALT-200002
+Tracking #: PA-ALT-200002
+Provider Name: Jordan Lee, MD
+Procedure/Service: Robotic-Assisted Transbronchial Lung Biopsy
+CPT Code(s): 31629, 31632, 77012
+ICD-10 Diagnosis: R91.1 — Solitary pulmonary nodule
+Requested DOS: 2026-11-15
+Facility: Fictional North Valley Medical Center
+The request states that robotic navigation can reach this peripheral lesion.

@@ -1,0 +1,8 @@
+FICTIONAL CLINICAL NOTE — ALTERNATE CASE
+Patient: TAYLOR SAMPLE
+DOB: 01/10/1960
+MRN: ALT-200002
+The patient is clinically stable. A 6 mm right middle lobe nodule has been unchanged on imaging for 24 months.
+The nodule is not considered suspicious for malignancy. No biopsy or tissue diagnosis is recommended.
+Annual imaging surveillance is appropriate. Robotic-assisted biopsy is not clinically indicated for this finding.
+There is no documented contraindication to bronchoscopy.
