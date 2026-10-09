@@ -6,7 +6,7 @@ coagulation_status is "Normal" when the document states normal PT/INR/coagulatio
 Lung-RADS values should contain just the category code, e.g. "4B", without the word Category.
 For each field in the schema, check whether this document supplies evidence before omitting it.
 Return only observations supported by exact, contiguous source quotes and supplied document ID/page.
-Each quote must be copied character-for-character from ONE place on the page: do not paraphrase, reorder, merge separate lines or bullets, or add words. Prefer a short quote (one line or sentence) that contains the value.
+Each quote must be copied character-for-character from ONE place on the page: do not paraphrase, reorder, merge separate lines or bullets, or add words. Prefer a short quote (one line or sentence) that contains the value. A quote must lie entirely on ONE page: if a sentence continues onto the next page, quote only the part on the cited page, and cite the page where the quote actually appears.
 Include all distinct conflicting values, not just a preferred value. Omit absent fields; do not fabricate null/normal.
 Use ISO dates. Normalize patient name to Given Middle Family, preserving identity. CPT codes are strings.
 Finding/location/characteristics/rationale are brief factual text; keep dimensions with units.

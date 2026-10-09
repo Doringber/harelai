@@ -25,9 +25,11 @@ def canonical(field, value):
         return s
     return tuple(sorted(value)) if isinstance(value, list) else value
 
-def _severity(field):
-    # A dropped quote only blocks approval when the decision or a critical value depends on it.
-    return "blocking" if field in CRITICAL or field in BOOLEAN_FIELDS else "warning"
+def _severity(o):
+    # A dropped quote blocks approval only if losing it could hide a problem: a critical value,
+    # a contraindication, or a yes/no fact that said "no". A dropped "yes" only makes approval harder.
+    if o.field in CRITICAL or o.field == "contraindication": return "blocking"
+    return "blocking" if o.field in BOOLEAN_FIELDS and o.value is not True else "warning"
 
 def validate_evidence(observations: list[Observation], documents: list[Document]):
     lookup = {d.id: d for d in documents}
@@ -35,10 +37,16 @@ def validate_evidence(observations: list[Observation], documents: list[Document]
     for o in observations:
         d = lookup.get(o.evidence.document_id)
         p = next((p for p in d.pages if p.number == o.evidence.page), None) if d else None
+        quote = normalize(o.evidence.quote)
+        if d and (p is None or not p.usable or quote not in normalize(p.text)):
+            # Models often cite the wrong page number. If the exact quote is on exactly one other page, fix the number.
+            found = [x for x in d.pages if x.usable and quote in normalize(x.text)]
+            if len(found) == 1:
+                p, o = found[0], o.model_copy(update={"evidence": o.evidence.model_copy(update={"page": found[0].number})})
         if p is None or not p.usable or normalize(o.evidence.quote) not in normalize(p.text):
-            issues.append(Issue(code="invalid_evidence", severity=_severity(o.field), detail=f"Unverifiable evidence for {o.field}"))
+            issues.append(Issue(code="invalid_evidence", severity=_severity(o), detail=f"Unverifiable evidence for {o.field}"))
         elif o.field in NUMBER_FIELDS and not any(float(n) == o.value for n in re.findall(r"(?<![\w.])\d+(?:\.\d+)?", o.evidence.quote)):
-            issues.append(Issue(code="invalid_evidence", severity=_severity(o.field), detail=f"Numeric value absent from quote for {o.field}"))
+            issues.append(Issue(code="invalid_evidence", severity=_severity(o), detail=f"Numeric value absent from quote for {o.field}"))
         else:
             accepted.append(o)
     return accepted, issues

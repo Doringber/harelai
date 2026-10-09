@@ -104,8 +104,15 @@ class EvidenceTests(unittest.TestCase):
     def test_fabricated_quote_rejected(self):
         valid,issues=validate_evidence([obs('finding','nodule',quote='Never existed')],[doc()])
         self.assertFalse(valid);self.assertEqual(issues[0].code,'invalid_evidence')
-    def test_wrong_page_rejected(self):
+    def test_wrong_page_number_corrected_when_quote_on_one_page(self):
         o=obs('finding','nodule').model_copy(update={'evidence':Evidence(document_id='ct',page=3,quote='Evidence text')})
+        valid,issues=validate_evidence([o],[doc()])
+        self.assertFalse(issues);self.assertEqual(valid[0].evidence.page,1)
+    def test_wrong_page_rejected_when_quote_on_several_pages_or_none(self):
+        two=Document(id='ct',filename='t.pdf',role='ct',sha256='t',pages=[Page(number=n,text='Evidence text',method='native') for n in (1,2)])
+        o=obs('finding','nodule').model_copy(update={'evidence':Evidence(document_id='ct',page=3,quote='Evidence text')})
+        self.assertTrue(validate_evidence([o],[two])[1])
+        o=obs('finding','nodule',quote='Never existed').model_copy(update={'evidence':Evidence(document_id='ct',page=3,quote='Never existed')})
         self.assertTrue(validate_evidence([o],[doc()])[1])
     def test_number_not_in_quote_rejected(self):
         self.assertTrue(validate_evidence([obs('fev1_percent',99,quote='FEV1 62% predicted')],[doc('FEV1 62% predicted')])[1])
@@ -180,5 +187,17 @@ class ScopedConflictTests(unittest.TestCase):
         self.assertNotIn('Conflicting procedure; all observations retained',[i.detail for i in issues])
         issues=validate_case(docs,[obs('request','Robotic Biopsy'),obs('request','Other Procedure')])
         self.assertIn('Conflicting procedure; all observations retained',[i.detail for i in issues])
+
+class DroppedEvidenceSeverityTests(unittest.TestCase):
+    def test_unverifiable_quote_severity(self):
+        doc=Document(id='ct',filename='ct',role='ct',sha256='x',pages=[Page(number=1,text='The nodule is suspicious.',method='text')])
+        def issue(field,value):
+            o=Observation(field=field,value=value,evidence=Evidence(document_id='ct',page=1,quote='not in the page'))
+            return validate_evidence([o],[doc])[1][0].severity
+        self.assertEqual(issue('suspicious_nodule',True),'warning')
+        self.assertEqual(issue('suspicious_nodule',False),'blocking')
+        self.assertEqual(issue('contraindication',True),'blocking')
+        self.assertEqual(issue('location','right upper lobe'),'warning')
+        self.assertEqual(issue('lung_rads','4B'),'blocking')
 
 if __name__=='__main__': unittest.main()

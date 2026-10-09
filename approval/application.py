@@ -71,7 +71,7 @@ def run(manifest, extractor, store, ocr=False, languages="eng", fresh=False):
                 "cached": cached is not None, "seconds": round(time.monotonic()-start, 3),
                 "usage": {} if cached is not None else getattr(extractor, "last_usage", {})})
         except Exception as exc:
-            issues.append(Issue(code="extraction_failed", severity="blocking", detail=f"{doc_id}: {type(exc).__name__}"))
+            issues.append(Issue(code="extraction_failed", severity="blocking", detail=f"{doc_id}: {type(exc).__name__} {exc}".strip()))
             trace.append({"stage": "extract", "document_id": doc_id, "status": "failed", "error_type": type(exc).__name__})
     issues.extend(validate_case(docs, observations))
     recommendation = decide(observations, docs, issues)
