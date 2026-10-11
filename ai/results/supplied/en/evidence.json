@@ -1,0 +1,512 @@
+{
+  "request": {
+    "patient_name": [
+      {
+        "document_id": "request",
+        "quote": "Beneficiary Name:\nJOHNSON, MARGARET A.",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "date_of_birth": [
+      {
+        "document_id": "request",
+        "quote": "Date of Birth: 03/15/1952",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "case_id": [
+      {
+        "document_id": "request",
+        "quote": "Tracking #: PA-2025-847291",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "provider": [
+      {
+        "document_id": "request",
+        "quote": "Provider Name:\nDavid Chen, MD",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "request",
+        "quote": "David Chen, MD",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "request",
+        "quote": "David Chen, MD",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "procedure": [
+      {
+        "document_id": "request",
+        "quote": "Procedure/Service: Robotic-Assisted Transbronchial Lung Biopsy",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "request",
+        "quote": "Robotic-assisted bronchoscopy with electromagnetic navigation and CT fluoroscopy guidance provides optimal approach for this peripheral lesion while minimizing pneumothorax risk compared to CT-guided transthoracic needle biopsy (patient has underlying COPD with FEV1 62% predicted).",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "cpt_codes": [
+      {
+        "document_id": "request",
+        "quote": "CPT Code(s):\n31629 - Bronchoscopy with transbronchial lung biopsy\n31632 - Bronchoscopy with transbronchial lung biopsy, each additional lobe\n77012 - CT guidance for needle placement",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "diagnoses": [
+      {
+        "document_id": "request",
+        "quote": "ICD-10 Diagnosis:\nR91.1 - Solitary pulmonary nodule\nF17.211 - Nicotine dependence, cigarettes, in remission\nJ44.9 - Chronic obstructive pulmonary disease, unspecified\nZ77.22 - Contact with and exposure to environmental tobacco smoke",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "requested_date": [
+      {
+        "document_id": "request",
+        "quote": "Requested DOS: December 10, 2025",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "facility": [
+      {
+        "document_id": "request",
+        "quote": "Facility: UC Davis Medical Center, Sacramento, CA",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "suv_max": [
+      {
+        "document_id": "request",
+        "quote": "(SUVmax 4.2)",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "rationale": [
+      {
+        "document_id": "request",
+        "quote": "Robotic-assisted bronchoscopy with electromagnetic navigation and CT fluoroscopy guidance provides optimal approach for this peripheral lesion while minimizing pneumothorax risk compared to CT-guided transthoracic needle biopsy (patient has underlying COPD with FEV1 62% predicted).",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "procedure_supported": [
+      {
+        "document_id": "request",
+        "quote": "Robotic-assisted bronchoscopy with electromagnetic navigation and CT fluoroscopy guidance provides optimal approach for this peripheral lesion while minimizing pneumothorax risk compared to CT-guided transthoracic needle biopsy (patient has underlying COPD with FEV1 62% predicted).",
+        "page": 2,
+        "ocr": false
+      }
+    ]
+  },
+  "clinical": {
+    "patient_name": [
+      {
+        "document_id": "clinical",
+        "quote": "Patient:\nJOHNSON, MARGARET A.",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "clinical",
+        "quote": "Patient:\nJOHNSON, MARGARET A.",
+        "page": 3,
+        "ocr": false
+      },
+      {
+        "document_id": "clinical",
+        "quote": "JOHNSON, MARGARET A.",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "clinical",
+        "quote": "JOHNSON, MARGARET A.",
+        "page": 3,
+        "ocr": false
+      }
+    ],
+    "date_of_birth": [
+      {
+        "document_id": "clinical",
+        "quote": "DOB:\n03/15/1952",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "clinical",
+        "quote": "DOB:\n03/15/1952",
+        "page": 3,
+        "ocr": false
+      }
+    ],
+    "mrn": [
+      {
+        "document_id": "clinical",
+        "quote": "MRN:\n847291",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "clinical",
+        "quote": "MRN:\n847291",
+        "page": 3,
+        "ocr": false
+      }
+    ],
+    "finding": [
+      {
+        "document_id": "clinical",
+        "quote": "The CT revealed an 18mm part-solid nodule in the right upper lobe, posterior segment.",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "clinical",
+        "quote": "Right upper lobe pulmonary nodule, suspicious for malignancy - 18mm part-solid nodule with spiculated margins and FDG-avidity (SUVmax 4.2). Lung-RADS 4B.",
+        "page": 3,
+        "ocr": false
+      }
+    ],
+    "suv_max": [
+      {
+        "document_id": "clinical",
+        "quote": "Follow-up PET-CT on 10/28/2025 showed the nodule to be FDG-avid with SUVmax of 4.2, which raises concern for malignancy.",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "clinical",
+        "quote": "PET-CT (10/28/2025): FDG-avid RUL nodule, SUVmax 4.2. No mediastinal or hilar lymph node uptake. No evidence of distant metastatic disease.",
+        "page": 3,
+        "ocr": false
+      },
+      {
+        "document_id": "clinical",
+        "quote": "Right upper lobe pulmonary nodule, suspicious for malignancy - 18mm part-solid nodule with spiculated margins and FDG-avidity (SUVmax 4.2). Lung-RADS 4B. Brock model probability of malignancy 68%.",
+        "page": 3,
+        "ocr": false
+      }
+    ],
+    "malignancy_risk": [
+      {
+        "document_id": "clinical",
+        "quote": "Brock model probability of malignancy 68%.",
+        "page": 3,
+        "ocr": false
+      }
+    ],
+    "suspicious_nodule": [
+      {
+        "document_id": "clinical",
+        "quote": "Follow-up PET-CT on 10/28/2025 showed the nodule to be FDG-avid with SUVmax of 4.2, which raises concern for malignancy.",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "clinical",
+        "quote": "Right upper lobe pulmonary nodule, suspicious for malignancy - 18mm part-solid nodule with spiculated margins and FDG-avidity (SUVmax 4.2). Lung-RADS 4B.",
+        "page": 3,
+        "ocr": false
+      }
+    ],
+    "tissue_sampling": [
+      {
+        "document_id": "clinical",
+        "quote": "1. Tissue Diagnosis: Recommend robotic-assisted transbronchial biopsy with electromagnetic navigation and CT fluoroscopy guidance.",
+        "page": 3,
+        "ocr": false
+      },
+      {
+        "document_id": "clinical",
+        "quote": "They understand the concern for malignancy and agree with proceeding to biopsy.",
+        "page": 4,
+        "ocr": false
+      }
+    ],
+    "procedure_supported": [
+      {
+        "document_id": "clinical",
+        "quote": "Recommend robotic-assisted transbronchial biopsy with electromagnetic navigation and CT fluoroscopy guidance. This approach is preferred over CT-guided transthoracic biopsy given:\n- Peripheral location accessible via airways\n- Lower pneumothorax risk (important given underlying COPD)\n- Ability to sample mediastinal nodes if needed",
+        "page": 3,
+        "ocr": false
+      }
+    ]
+  },
+  "ct": {
+    "patient_name": [
+      {
+        "document_id": "ct",
+        "quote": "Patient:\nJOHNSON, MARGARET A.",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "date_of_birth": [
+      {
+        "document_id": "ct",
+        "quote": "DOB:\n03/15/1952",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "mrn": [
+      {
+        "document_id": "ct",
+        "quote": "MRN:\n847291",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "finding": [
+      {
+        "document_id": "ct",
+        "quote": "There is an 18 x 15 mm part-solid nodule in the right upper lobe, posterior segment (series 3, image 47).",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "18mm part-solid nodule in the right upper lobe, posterior segment, with 12mm solid component and spiculated margins. This is highly suspicious for primary lung malignancy.",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "location": [
+      {
+        "document_id": "ct",
+        "quote": "There is an 18 x 15 mm part-solid nodule in the right upper lobe, posterior segment (series 3, image 47).",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "- 4mm ground-glass nodule in the left lower lobe (series 3, image 112) - likely benign",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "18mm part-solid nodule in the right upper lobe, posterior segment, with 12mm solid component and spiculated margins.",
+        "page": 2,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "4mm ground-glass nodule in left lower lobe, likely benign.",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "nodule_size": [
+      {
+        "document_id": "ct",
+        "quote": "There is an 18 x 15 mm part-solid nodule in the right upper lobe, posterior segment (series 3, image 47).",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "The nodule demonstrates spiculated margins with a solid component measuring approximately 12mm.",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "The ground-glass component measures approximately 6mm in greatest dimension.",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "- 4mm ground-glass nodule in the left lower lobe (series 3, image 112) - likely benign",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "1. 18mm part-solid nodule in the right upper lobe, posterior segment, with 12mm solid component and spiculated margins.",
+        "page": 2,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "1. 18mm part-solid nodule in the right upper lobe, posterior segment, with 12mm solid component and spiculated margins.",
+        "page": 2,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "3. 4mm ground-glass nodule in left lower lobe, likely benign.",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "characteristics": [
+      {
+        "document_id": "ct",
+        "quote": "The nodule demonstrates spiculated margins with a solid component measuring approximately 12mm. The ground-glass component measures approximately 6mm in greatest dimension.",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "18mm part-solid nodule in the right upper lobe, posterior segment, with 12mm solid component and spiculated margins.",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "lung_rads": [
+      {
+        "document_id": "ct",
+        "quote": "Lung-RADS Category: 4B",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "suspicious_nodule": [
+      {
+        "document_id": "ct",
+        "quote": "There is an 18 x 15 mm part-solid nodule in the right upper lobe, posterior segment (series 3, image 47). The nodule demonstrates spiculated margins with a solid component measuring approximately 12mm. The ground-glass component measures approximately 6mm in greatest dimension.",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "ct",
+        "quote": "18mm part-solid nodule in the right upper lobe, posterior segment, with 12mm solid component and spiculated margins. This is highly suspicious for primary lung malignancy.",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "tissue_sampling": [
+      {
+        "document_id": "ct",
+        "quote": "PET-CT and tissue sampling recommended.",
+        "page": 2,
+        "ocr": false
+      }
+    ]
+  },
+  "labs": {
+    "patient_name": [
+      {
+        "document_id": "labs",
+        "quote": "Patient:\nJOHNSON, MARGARET A.",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "date_of_birth": [
+      {
+        "document_id": "labs",
+        "quote": "DOB: 03/15/1952",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "mrn": [
+      {
+        "document_id": "labs",
+        "quote": "MRN:\n847291",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "coagulation_status": [
+      {
+        "document_id": "labs",
+        "quote": "No evidence of coagulopathy.",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "labs_acceptable": [
+      {
+        "document_id": "labs",
+        "quote": "Patient is suitable for invasive procedures from a hematologic and metabolic standpoint.",
+        "page": 2,
+        "ocr": false
+      }
+    ]
+  },
+  "pft": {
+    "patient_name": [
+      {
+        "document_id": "pft",
+        "quote": "Patient:\nJOHNSON, MARGARET A.",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "date_of_birth": [
+      {
+        "document_id": "pft",
+        "quote": "DOB: 03/15/1952 (Age: 73)",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "mrn": [
+      {
+        "document_id": "pft",
+        "quote": "MRN:\n847291",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "fev1_percent": [
+      {
+        "document_id": "pft",
+        "quote": "FEV1 (L) 1.52 2.45 62%",
+        "page": 1,
+        "ocr": false
+      }
+    ],
+    "dlco_percent": [
+      {
+        "document_id": "pft",
+        "quote": "DLCO (mL/min/mmHg)\n14.2\n24.5\n58%",
+        "page": 1,
+        "ocr": false
+      },
+      {
+        "document_id": "pft",
+        "quote": "Moderately reduced diffusion capacity (DLCO 58% predicted) - May reflect emphysematous changes and/or",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "pulmonary_acceptable": [
+      {
+        "document_id": "pft",
+        "quote": "From a pulmonary function standpoint, patient would tolerate bronchoscopic procedures.",
+        "page": 2,
+        "ocr": false
+      }
+    ],
+    "contraindication": [
+      {
+        "document_id": "pft",
+        "quote": "From a pulmonary function standpoint, patient would tolerate bronchoscopic procedures.",
+        "page": 2,
+        "ocr": false
+      }
+    ]
+  }
+}

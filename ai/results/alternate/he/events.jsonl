@@ -1,0 +1,17 @@
+{"timestamp": "2026-10-11T07:33:23.641254+00:00", "event": "started", "workflow": "lung_biopsy", "language": "he", "model": {"name": "gemma4", "digest": "537f7e16a1bb3870ba57e328fd60ca1ea28a0c35002c788a7d5845efa865cd86", "details": {"parent_model": "", "format": "gguf", "family": "gemma4", "families": ["gemma4"], "parameter_size": "8.0B", "quantization_level": "Q4_K_M", "context_length": 131072, "embedding_length": 2560, "runner": "ggml"}}}
+{"timestamp": "2026-10-11T07:33:23.641666+00:00", "event": "document_started", "document_id": "request", "role": "request", "path": "ai/alternate_case/01_request.pdf"}
+{"timestamp": "2026-10-11T07:33:23.659488+00:00", "event": "document_read", "document_id": "request", "reader": "pdf", "units": 1}
+{"timestamp": "2026-10-11T07:33:46.584444+00:00", "event": "document_completed", "document_id": "request", "extraction_failures": 0, "elapsed_seconds": 22.943}
+{"timestamp": "2026-10-11T07:33:46.591433+00:00", "event": "document_started", "document_id": "clinical", "role": "clinical", "path": "ai/alternate_case/02_clinical.pdf"}
+{"timestamp": "2026-10-11T07:33:46.606256+00:00", "event": "document_read", "document_id": "clinical", "reader": "pdf", "units": 1}
+{"timestamp": "2026-10-11T07:34:04.077925+00:00", "event": "document_completed", "document_id": "clinical", "extraction_failures": 0, "elapsed_seconds": 17.486}
+{"timestamp": "2026-10-11T07:34:04.083507+00:00", "event": "document_started", "document_id": "ct", "role": "ct", "path": "ai/alternate_case/03_ct.pdf"}
+{"timestamp": "2026-10-11T07:34:04.094336+00:00", "event": "document_read", "document_id": "ct", "reader": "pdf", "units": 1}
+{"timestamp": "2026-10-11T07:34:23.577417+00:00", "event": "document_completed", "document_id": "ct", "extraction_failures": 0, "elapsed_seconds": 19.494}
+{"timestamp": "2026-10-11T07:34:23.586065+00:00", "event": "document_started", "document_id": "labs", "role": "labs", "path": "ai/alternate_case/04_labs.pdf"}
+{"timestamp": "2026-10-11T07:34:23.597524+00:00", "event": "document_read", "document_id": "labs", "reader": "pdf", "units": 1}
+{"timestamp": "2026-10-11T07:34:35.969552+00:00", "event": "document_completed", "document_id": "labs", "extraction_failures": 0, "elapsed_seconds": 12.383}
+{"timestamp": "2026-10-11T07:34:35.978262+00:00", "event": "document_started", "document_id": "pft", "role": "pft", "path": "ai/alternate_case/05_pft.pdf"}
+{"timestamp": "2026-10-11T07:34:35.991312+00:00", "event": "document_read", "document_id": "pft", "reader": "pdf", "units": 1}
+{"timestamp": "2026-10-11T07:34:49.774167+00:00", "event": "document_completed", "document_id": "pft", "extraction_failures": 0, "elapsed_seconds": 13.796}
+{"timestamp": "2026-10-11T07:34:49.805228+00:00", "event": "completed", "status": "MANUAL_REVIEW", "rules": {"rule_1": false, "rule_2": false, "rule_3": true, "rule_4": true}, "issues": 2, "elapsed_seconds": 86.176}

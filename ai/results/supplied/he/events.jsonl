@@ -1,0 +1,17 @@
+{"timestamp": "2026-10-11T07:22:48.106382+00:00", "event": "started", "workflow": "lung_biopsy", "language": "he", "model": {"name": "gemma4", "digest": "537f7e16a1bb3870ba57e328fd60ca1ea28a0c35002c788a7d5845efa865cd86", "details": {"parent_model": "", "format": "gguf", "family": "gemma4", "families": ["gemma4"], "parameter_size": "8.0B", "quantization_level": "Q4_K_M", "context_length": 131072, "embedding_length": 2560, "runner": "ggml"}}}
+{"timestamp": "2026-10-11T07:22:48.106766+00:00", "event": "document_started", "document_id": "request", "role": "request", "path": "ai/01_Prior_Auth_Request_Form.pdf"}
+{"timestamp": "2026-10-11T07:22:48.133032+00:00", "event": "document_read", "document_id": "request", "reader": "pdf", "units": 2}
+{"timestamp": "2026-10-11T07:23:27.781185+00:00", "event": "document_completed", "document_id": "request", "extraction_failures": 0, "elapsed_seconds": 39.674}
+{"timestamp": "2026-10-11T07:23:27.782108+00:00", "event": "document_started", "document_id": "clinical", "role": "clinical", "path": "ai/02_Clinical_Notes_H_and_P.pdf"}
+{"timestamp": "2026-10-11T07:23:27.807077+00:00", "event": "document_read", "document_id": "clinical", "reader": "pdf", "units": 4}
+{"timestamp": "2026-10-11T07:24:49.828445+00:00", "event": "document_completed", "document_id": "clinical", "extraction_failures": 0, "elapsed_seconds": 82.046}
+{"timestamp": "2026-10-11T07:24:49.828832+00:00", "event": "document_started", "document_id": "ct", "role": "ct", "path": "ai/03_CT_Chest_Report.pdf"}
+{"timestamp": "2026-10-11T07:24:49.840118+00:00", "event": "document_read", "document_id": "ct", "reader": "pdf", "units": 2}
+{"timestamp": "2026-10-11T07:25:43.915524+00:00", "event": "document_completed", "document_id": "ct", "extraction_failures": 0, "elapsed_seconds": 54.086}
+{"timestamp": "2026-10-11T07:25:43.921226+00:00", "event": "document_started", "document_id": "labs", "role": "labs", "path": "ai/04_Laboratory_Results.pdf"}
+{"timestamp": "2026-10-11T07:25:43.936130+00:00", "event": "document_read", "document_id": "labs", "reader": "pdf", "units": 2}
+{"timestamp": "2026-10-11T07:25:59.593022+00:00", "event": "document_completed", "document_id": "labs", "extraction_failures": 0, "elapsed_seconds": 15.672}
+{"timestamp": "2026-10-11T07:25:59.627208+00:00", "event": "document_started", "document_id": "pft", "role": "pft", "path": "ai/05_Pulmonary_Function_Tests.pdf"}
+{"timestamp": "2026-10-11T07:25:59.654003+00:00", "event": "document_read", "document_id": "pft", "reader": "pdf", "units": 2}
+{"timestamp": "2026-10-11T07:26:25.412165+00:00", "event": "document_completed", "document_id": "pft", "extraction_failures": 0, "elapsed_seconds": 25.785}
+{"timestamp": "2026-10-11T07:26:25.430141+00:00", "event": "completed", "status": "APPROVE", "rules": {"rule_1": true, "rule_2": true, "rule_3": true, "rule_4": true}, "issues": 18, "elapsed_seconds": 217.468}

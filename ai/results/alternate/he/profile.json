@@ -1,0 +1,780 @@
+{
+  "name": "lung_biopsy",
+  "version": "1.1",
+  "fields": {
+    "patient_name": {
+      "type": "text",
+      "definition": "The patient or beneficiary name explicitly written in this document. Fictional, anonymized, sample, and test patient names are valid entries; extract the written name even if it looks like a placeholder.",
+      "label": {
+        "en": "patient name",
+        "he": "שם המטופל/ת"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "date_of_birth": {
+      "type": "text",
+      "definition": "the patient's date of birth, usually after 'DOB:' or 'Date of Birth:'",
+      "label": {
+        "en": "date of birth",
+        "he": "תאריך הלידה"
+      },
+      "format": "date",
+      "quote_terms": []
+    },
+    "mrn": {
+      "type": "text",
+      "definition": "the value labelled MRN (medical record number); never the Medicare ID / MBI",
+      "label": {
+        "en": "mrn",
+        "he": "מספר הרשומה הרפואית"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "case_id": {
+      "type": "text",
+      "definition": "the request tracking number, e.g. the value after 'Tracking #'",
+      "label": {
+        "en": "case id",
+        "he": "מספר הבקשה"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "provider": {
+      "type": "text",
+      "definition": "the requesting physician's name",
+      "label": {
+        "en": "provider",
+        "he": "הרופא/ה המבקש/ת"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "procedure": {
+      "type": "text",
+      "definition": "The exact requested procedure title labelled Procedure/Service. Do not list CPT descriptions, alternative procedures, or rationale text.",
+      "label": {
+        "en": "procedure",
+        "he": "הפרוצדורה המבוקשת"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "cpt_codes": {
+      "type": "text_list",
+      "definition": "the 5-digit CPT codes requested, as a list",
+      "label": {
+        "en": "cpt codes",
+        "he": "קודי CPT"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "diagnoses": {
+      "type": "text_list",
+      "definition": "the ICD-10 diagnoses, as a list",
+      "label": {
+        "en": "diagnoses",
+        "he": "האבחנות"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "requested_date": {
+      "type": "text",
+      "definition": "the requested date of service (e.g. 'Requested DOS'); not submission, exam or visit dates",
+      "label": {
+        "en": "requested date",
+        "he": "תאריך השירות המבוקש"
+      },
+      "format": "date",
+      "quote_terms": []
+    },
+    "facility": {
+      "type": "text",
+      "definition": "the facility where the procedure will be done",
+      "label": {
+        "en": "facility",
+        "he": "המוסד הרפואי"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "suv_max": {
+      "type": "number",
+      "definition": "the PET-CT SUVmax number",
+      "label": {
+        "en": "suv max",
+        "he": "ערך SUVmax"
+      },
+      "format": null,
+      "quote_terms": [
+        "suv"
+      ]
+    },
+    "location": {
+      "type": "text",
+      "definition": "anatomical location of the lung nodule (lobe/segment); not an address",
+      "label": {
+        "en": "location",
+        "he": "מיקום הנודול"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "finding": {
+      "type": "text",
+      "definition": "The primary lung nodule finding as one short phrase that names its lobe and whether it is suspicious, copied from the impression or assessment, e.g. 'Right upper lobe pulmonary nodule, suspicious for malignancy'. Ignore secondary or benign nodules.",
+      "label": {
+        "en": "finding",
+        "he": "הממצא העיקרי"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "nodule_size": {
+      "type": "text",
+      "definition": "nodule dimensions with units, e.g. '18 x 15 mm'",
+      "label": {
+        "en": "nodule size",
+        "he": "גודל הנודול"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "characteristics": {
+      "type": "text",
+      "definition": "the nodule's appearance (margins, solid/ground-glass components)",
+      "label": {
+        "en": "characteristics",
+        "he": "מאפייני הנודול"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "lung_rads": {
+      "type": "text",
+      "definition": "the Lung-RADS category code only, e.g. '4B'",
+      "label": {
+        "en": "lung rads",
+        "he": "קטגוריית Lung-RADS"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "malignancy_risk": {
+      "type": "text",
+      "definition": "The documented quantitative risk of malignancy, e.g. Brock or Mayo model probability percentages.",
+      "label": {
+        "en": "malignancy risk",
+        "he": "הערכת הסיכון לממאירות"
+      },
+      "format": null,
+      "quote_terms": [
+        "brock",
+        "mayo",
+        "risk",
+        "probability",
+        "%",
+        "סיכון",
+        "הסתברות"
+      ]
+    },
+    "coagulation_status": {
+      "type": "text",
+      "definition": "'Normal' if PT/INR or coagulation is normal / no coagulopathy; otherwise the abnormal finding",
+      "label": {
+        "en": "coagulation status",
+        "he": "מצב הקרישה"
+      },
+      "format": null,
+      "quote_terms": []
+    },
+    "fev1_percent": {
+      "type": "number",
+      "definition": "pre-bronchodilator FEV1 as % predicted",
+      "label": {
+        "en": "fev1 percent",
+        "he": "FEV1"
+      },
+      "format": "percent",
+      "quote_terms": [
+        "fev1"
+      ]
+    },
+    "dlco_percent": {
+      "type": "number",
+      "definition": "DLCO as % predicted",
+      "label": {
+        "en": "dlco percent",
+        "he": "DLCO"
+      },
+      "format": "percent",
+      "quote_terms": [
+        "dlco"
+      ]
+    },
+    "rationale": {
+      "type": "text",
+      "definition": "The sentence explaining why the requested robotic bronchoscopic approach was chosen for this patient, e.g. lesion location or lower pneumothorax risk than a transthoracic biopsy. Not the chief complaint, history or a list heading.",
+      "label": {
+        "en": "rationale",
+        "he": "נימוק לבחירת הפרוצדורה"
+      },
+      "format": null,
+      "quote_terms": [
+        "approach",
+        "robotic",
+        "bronchoscop",
+        "גישה",
+        "רובוט",
+        "ברונכוסקופ"
+      ]
+    },
+    "suspicious_nodule": {
+      "type": "flag",
+      "definition": "true if the document calls the nodule suspicious for malignancy",
+      "label": {
+        "en": "suspicious nodule",
+        "he": "חשד לנודול"
+      },
+      "format": null,
+      "quote_terms": [
+        "nodule",
+        "lesion",
+        "suspicious",
+        "lung-rads",
+        "נודול",
+        "נגע",
+        "חשוד",
+        "חשד"
+      ]
+    },
+    "tissue_sampling": {
+      "type": "flag",
+      "definition": "true if the document recommends biopsy / tissue sampling / tissue diagnosis",
+      "label": {
+        "en": "tissue sampling",
+        "he": "המלצה לדגימת רקמה"
+      },
+      "format": null,
+      "quote_terms": [
+        "biopsy",
+        "tissue",
+        "sampling",
+        "ביופס",
+        "רקמה",
+        "דגימ"
+      ]
+    },
+    "procedure_supported": {
+      "type": "flag",
+      "definition": "true if the document explains why the requested robotic bronchoscopic biopsy suits the lesion location and patient condition",
+      "label": {
+        "en": "procedure supported",
+        "he": "התאמת הפרוצדורה"
+      },
+      "format": null,
+      "quote_terms": [
+        "approach",
+        "bronchos",
+        "robotic",
+        "procedure",
+        "גישה",
+        "ברונכוסקופ",
+        "רובוט",
+        "פרוצדורה",
+        "הליך",
+        "פעולה"
+      ]
+    },
+    "labs_acceptable": {
+      "type": "flag",
+      "definition": "true if the lab report states the patient is suitable for invasive procedures",
+      "label": {
+        "en": "labs acceptable",
+        "he": "התאמת בדיקות המעבדה"
+      },
+      "format": null,
+      "quote_terms": [
+        "invasive",
+        "procedure",
+        "suitable",
+        "פולשנ",
+        "הליך",
+        "פרוצדורה",
+        "מתאים",
+        "מתאימה",
+        "התאמה"
+      ]
+    },
+    "pulmonary_acceptable": {
+      "type": "flag",
+      "definition": "true if the PFT report states the patient would tolerate bronchoscopic procedures",
+      "label": {
+        "en": "pulmonary acceptable",
+        "he": "התאמת תפקודי הריאה"
+      },
+      "format": null,
+      "quote_terms": [
+        "bronchoscop",
+        "procedure",
+        "tolerat",
+        "ברונכוסקופ",
+        "הליך",
+        "פרוצדורה",
+        "סבילות",
+        "לסבול"
+      ]
+    },
+    "contraindication": {
+      "type": "flag",
+      "definition": "true only if the document states a clear barrier to performing the procedure",
+      "label": {
+        "en": "contraindication",
+        "he": "התוויית נגד"
+      },
+      "format": null,
+      "quote_terms": [
+        "contraindicat",
+        "barrier",
+        "prohibit",
+        "unsafe",
+        "not suitable",
+        "preclude",
+        "coagulopat",
+        "tolerat",
+        "no limitations",
+        "התוויית נגד",
+        "מניעה",
+        "אסור",
+        "מסוכן",
+        "לא מתאים",
+        "אינו מתאים",
+        "מגבלה",
+        "קרישה",
+        "סבילות"
+      ]
+    }
+  },
+  "roles": {
+    "request": {
+      "label": {
+        "en": "request",
+        "he": "בקשת האישור"
+      },
+      "fields": [
+        "patient_name",
+        "date_of_birth",
+        "case_id",
+        "provider",
+        "procedure",
+        "cpt_codes",
+        "diagnoses",
+        "requested_date",
+        "facility",
+        "suv_max",
+        "rationale",
+        "procedure_supported"
+      ],
+      "required": true,
+      "required_fields": [
+        "patient_name",
+        "date_of_birth",
+        "procedure",
+        "cpt_codes",
+        "requested_date"
+      ]
+    },
+    "clinical": {
+      "label": {
+        "en": "clinical",
+        "he": "הסיכום הרפואי"
+      },
+      "fields": [
+        "patient_name",
+        "date_of_birth",
+        "mrn",
+        "finding",
+        "suv_max",
+        "malignancy_risk",
+        "rationale",
+        "suspicious_nodule",
+        "tissue_sampling",
+        "procedure_supported",
+        "contraindication"
+      ],
+      "required": true,
+      "required_fields": [
+        "patient_name",
+        "date_of_birth",
+        "mrn"
+      ]
+    },
+    "ct": {
+      "label": {
+        "en": "ct",
+        "he": "דו״ח ה־CT"
+      },
+      "fields": [
+        "patient_name",
+        "date_of_birth",
+        "mrn",
+        "finding",
+        "location",
+        "nodule_size",
+        "characteristics",
+        "lung_rads",
+        "suspicious_nodule",
+        "tissue_sampling"
+      ],
+      "required": true,
+      "required_fields": [
+        "patient_name",
+        "date_of_birth",
+        "mrn"
+      ]
+    },
+    "labs": {
+      "label": {
+        "en": "labs",
+        "he": "בדיקות המעבדה"
+      },
+      "fields": [
+        "patient_name",
+        "date_of_birth",
+        "mrn",
+        "coagulation_status",
+        "labs_acceptable",
+        "contraindication"
+      ],
+      "required": true,
+      "required_fields": [
+        "patient_name",
+        "date_of_birth",
+        "mrn"
+      ]
+    },
+    "pft": {
+      "label": {
+        "en": "pft",
+        "he": "בדיקות תפקודי הריאה"
+      },
+      "fields": [
+        "patient_name",
+        "date_of_birth",
+        "mrn",
+        "fev1_percent",
+        "dlco_percent",
+        "pulmonary_acceptable",
+        "contraindication"
+      ],
+      "required": true,
+      "required_fields": [
+        "patient_name",
+        "date_of_birth",
+        "mrn"
+      ]
+    }
+  },
+  "identity": [
+    {
+      "field": "patient_name",
+      "required": true,
+      "normalize": "name"
+    },
+    {
+      "field": "date_of_birth",
+      "required": true,
+      "normalize": "date"
+    },
+    {
+      "field": "mrn",
+      "required": false,
+      "normalize": "text"
+    }
+  ],
+  "blockers": [
+    {
+      "field": "contraindication",
+      "roles": [
+        "clinical",
+        "labs",
+        "pft"
+      ],
+      "op": "eq",
+      "value": true
+    }
+  ],
+  "rules": [
+    {
+      "id": "rule_1",
+      "label": {
+        "en": "Suspicious nodule requiring investigation",
+        "he": "נודול חשוד המצריך בירור"
+      },
+      "conditions": [
+        {
+          "field": "suspicious_nodule",
+          "roles": [
+            "ct",
+            "clinical"
+          ],
+          "op": "eq",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "rule_2",
+      "label": {
+        "en": "Tissue sampling recommended",
+        "he": "הומלצה דגימת רקמה"
+      },
+      "conditions": [
+        {
+          "field": "tissue_sampling",
+          "roles": [
+            "ct",
+            "clinical"
+          ],
+          "op": "eq",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "rule_3",
+      "label": {
+        "en": "Requested procedure fits the findings and the patient",
+        "he": "הפרוצדורה המבוקשת מתאימה לממצאים ולמצב הרפואי"
+      },
+      "conditions": [
+        {
+          "field": "procedure_supported",
+          "roles": [
+            "request",
+            "clinical"
+          ],
+          "op": "eq",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "rule_4",
+      "label": {
+        "en": "Preliminary tests show no clear barrier",
+        "he": "הבדיקות המקדימות אינן מצביעות על מניעה ברורה"
+      },
+      "conditions": [
+        {
+          "field": "labs_acceptable",
+          "roles": [
+            "labs"
+          ],
+          "op": "eq",
+          "value": true
+        },
+        {
+          "field": "pulmonary_acceptable",
+          "roles": [
+            "pft"
+          ],
+          "op": "eq",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "output_fields": {
+    "patient.name": {
+      "field": "patient_name",
+      "roles": [
+        "ct",
+        "pft",
+        "labs",
+        "clinical",
+        "request"
+      ],
+      "select": "unique",
+      "display": "name"
+    },
+    "patient.date_of_birth": {
+      "field": "date_of_birth",
+      "roles": [
+        "ct",
+        "pft",
+        "labs",
+        "clinical",
+        "request"
+      ],
+      "select": "unique",
+      "display": null
+    },
+    "patient.mrn": {
+      "field": "mrn",
+      "roles": [
+        "ct",
+        "pft",
+        "labs",
+        "clinical"
+      ],
+      "select": "unique",
+      "display": null
+    },
+    "case_id": {
+      "field": "case_id",
+      "roles": [
+        "request"
+      ],
+      "select": "unique",
+      "display": null
+    },
+    "request.provider": {
+      "field": "provider",
+      "roles": [
+        "request"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "request.procedure": {
+      "field": "procedure",
+      "roles": [
+        "request"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "request.cpt_codes": {
+      "field": "cpt_codes",
+      "roles": [
+        "request"
+      ],
+      "select": "unique",
+      "display": null
+    },
+    "request.diagnoses": {
+      "field": "diagnoses",
+      "roles": [
+        "request"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "request.requested_date": {
+      "field": "requested_date",
+      "roles": [
+        "request"
+      ],
+      "select": "unique",
+      "display": null
+    },
+    "request.facility": {
+      "field": "facility",
+      "roles": [
+        "request"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "clinical_summary.finding": {
+      "field": "finding",
+      "roles": [
+        "ct",
+        "clinical"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "clinical_summary.location": {
+      "field": "location",
+      "roles": [
+        "ct"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "clinical_summary.nodule_size": {
+      "field": "nodule_size",
+      "roles": [
+        "ct"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "clinical_summary.characteristics": {
+      "field": "characteristics",
+      "roles": [
+        "ct"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "clinical_summary.lung_rads": {
+      "field": "lung_rads",
+      "roles": [
+        "ct"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "clinical_summary.malignancy_risk": {
+      "field": "malignancy_risk",
+      "roles": [
+        "clinical"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "clinical_summary.coagulation_status": {
+      "field": "coagulation_status",
+      "roles": [
+        "labs"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "clinical_summary.fev1_percent": {
+      "field": "fev1_percent",
+      "roles": [
+        "pft"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "clinical_summary.dlco_percent": {
+      "field": "dlco_percent",
+      "roles": [
+        "pft"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "clinical_summary.suv_max": {
+      "field": "suv_max",
+      "roles": [
+        "request",
+        "clinical"
+      ],
+      "select": "first",
+      "display": null
+    },
+    "clinical_summary.rationale": {
+      "field": "rationale",
+      "roles": [
+        "request",
+        "clinical"
+      ],
+      "select": "first",
+      "display": null
+    }
+  },
+  "approval_reason": {
+    "en": "The clinical findings support tissue sampling of a suspicious nodule in the {clinical_summary.location} ({clinical_summary.nodule_size}, Lung-RADS {clinical_summary.lung_rads}). The requested procedure is appropriate for the lesion location and the patient's documented pulmonary condition (FEV1 {clinical_summary.fev1_percent}% predicted, DLCO {clinical_summary.dlco_percent}% predicted), and the laboratory and pulmonary tests show no clear barrier.",
+    "he": "הממצאים הקליניים תומכים בדגימת רקמה מנודול חשוד ({clinical_summary.nodule_size}, Lung-RADS {clinical_summary.lung_rads}). הפרוצדורה המבוקשת מתאימה למיקום הנגע ולמצב הריאתי המתואר במסמכים (FEV1 {clinical_summary.fev1_percent}% מהצפוי, DLCO {clinical_summary.dlco_percent}% מהצפוי), ובדיקות המעבדה ותפקודי הריאה אינן מצביעות על מניעה ברורה."
+  }
+}

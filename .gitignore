@@ -3,4 +3,12 @@ __pycache__/
 .venv/
 *.egg-info/
 .DS_Store
+.pytest_cache/
+build/
+dist/
 ai.zip
+
+# Local review output; curated results live in ai/results/
+runs/
+/result.json
+.ocr-data/

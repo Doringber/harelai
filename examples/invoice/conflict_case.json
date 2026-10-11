@@ -1,0 +1,20 @@
+{
+  "profile": "invoice_payment",
+  "documents": [
+    {
+      "id": "invoice-1",
+      "role": "invoice",
+      "path": "invoice.pdf"
+    },
+    {
+      "id": "receipt-1",
+      "role": "receipt",
+      "path": "receipt.docx"
+    },
+    {
+      "id": "receipt-2",
+      "role": "receipt",
+      "path": "missing_goods.docx"
+    }
+  ]
+}

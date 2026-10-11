@@ -1,0 +1,30 @@
+{
+  "profile": "lung_biopsy",
+  "documents": [
+    {
+      "id": "request",
+      "role": "request",
+      "path": "request.docx"
+    },
+    {
+      "id": "clinical",
+      "role": "clinical",
+      "path": "clinical.docx"
+    },
+    {
+      "id": "ct",
+      "role": "ct",
+      "path": "ct.docx"
+    },
+    {
+      "id": "labs",
+      "role": "labs",
+      "path": "labs.docx"
+    },
+    {
+      "id": "pft",
+      "role": "pft",
+      "path": "pft.docx"
+    }
+  ]
+}

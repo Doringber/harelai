@@ -1,0 +1,24 @@
+{
+  "documents": [
+    {
+      "role": "request",
+      "path": "01_request.pdf"
+    },
+    {
+      "role": "clinical",
+      "path": "02_clinical.pdf"
+    },
+    {
+      "role": "ct",
+      "path": "03_ct.pdf"
+    },
+    {
+      "role": "labs",
+      "path": "04_labs.pdf"
+    },
+    {
+      "role": "pft",
+      "path": "05_pft.pdf"
+    }
+  ]
+}

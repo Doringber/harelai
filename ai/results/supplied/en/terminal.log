@@ -1,0 +1,9 @@
+Reviewing case.json with gemma4
+  request: completed
+  clinical: completed
+  ct: completed
+  labs: completed
+  pft: completed
+
+APPROVE: The clinical findings support tissue sampling of a suspicious nodule in the right upper lobe, posterior segment (18 x 15 mm, Lung-RADS 4B). The requested procedure is appropriate for the lesion location and the patient's documented pulmonary condition (FEV1 62% predicted, DLCO 58% predicted), and the laboratory and pulmonary tests show no clear barrier.
+Results and logs: runs/final-medical/medical/en

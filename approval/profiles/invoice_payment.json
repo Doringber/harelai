@@ -1,0 +1,140 @@
+{
+  "name": "invoice_payment",
+  "version": "1.1",
+  "fields": {
+    "invoice_number": {
+      "type": "text",
+      "definition": "The invoice number / invoice identifier, including its prefix. In Hebrew it may be labelled מספר חשבונית.",
+      "label": {
+        "en": "Invoice number",
+        "he": "מספר החשבונית"
+      }
+    },
+    "vendor": {
+      "type": "text",
+      "definition": "The vendor or supplier name.",
+      "label": {
+        "en": "Vendor",
+        "he": "ספק"
+      }
+    },
+    "total_amount": {
+      "type": "number",
+      "definition": "The total invoice amount in USD, as a number.",
+      "label": {
+        "en": "Total amount",
+        "he": "סכום החשבונית"
+      },
+      "quote_terms": ["total amount", "סכום"]
+    },
+    "goods_received": {
+      "type": "flag",
+      "definition": "Whether this receipt explicitly confirms that ALL goods were received. Affirmative receipt is true. A denied or negated receipt is false; Hebrew negation such as לא reverses the answer. If receipt status is not mentioned, return no answer. Quotes must come from the document, not this definition.",
+      "label": {
+        "en": "Goods received",
+        "he": "קבלת הסחורה"
+      },
+      "quote_terms": [
+        "goods",
+        "received",
+        "סחורה",
+        "התקבל"
+      ]
+    }
+  },
+  "roles": {
+    "invoice": {
+      "label": {
+        "en": "Invoice",
+        "he": "חשבונית"
+      },
+      "fields": [
+        "invoice_number",
+        "vendor",
+        "total_amount"
+      ],
+      "required_fields": [
+        "invoice_number",
+        "total_amount"
+      ]
+    },
+    "receipt": {
+      "label": {
+        "en": "Receipt",
+        "he": "אישור קבלה"
+      },
+      "fields": [
+        "invoice_number",
+        "goods_received"
+      ],
+      "required_fields": [
+        "invoice_number",
+        "goods_received"
+      ]
+    }
+  },
+  "identity": [
+    {
+      "field": "invoice_number",
+      "required": true,
+      "normalize": "text"
+    }
+  ],
+  "rules": [
+    {
+      "id": "amount_limit",
+      "label": {
+        "en": "Invoice amount is at most USD 1,000",
+        "he": "סכום החשבונית אינו עולה על 1,000 דולר"
+      },
+      "conditions": [
+        {
+          "field": "total_amount",
+          "roles": [
+            "invoice"
+          ],
+          "op": "lte",
+          "value": 1000
+        }
+      ]
+    },
+    {
+      "id": "received",
+      "label": {
+        "en": "All goods were received",
+        "he": "כל הסחורה התקבלה"
+      },
+      "conditions": [
+        {
+          "field": "goods_received",
+          "roles": [
+            "receipt"
+          ],
+          "op": "eq",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "output_fields": {
+    "invoice.number": {
+      "field": "invoice_number",
+      "roles": [
+        "invoice",
+        "receipt"
+      ]
+    },
+    "invoice.vendor": {
+      "field": "vendor",
+      "roles": [
+        "invoice"
+      ]
+    },
+    "invoice.total_amount": {
+      "field": "total_amount",
+      "roles": [
+        "invoice"
+      ]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+Reviewing ai/alternate_case/case.json with gemma4
+  request: completed
+  clinical: completed
+  ct: completed
+  labs: completed
+  pft: completed
+
+MANUAL_REVIEW: Manual review required: Required criterion is not supported: Suspicious nodule requiring investigation. Required criterion is not supported: Tissue sampling recommended.
+Results and logs: runs/final-medical/medical_alternate/en

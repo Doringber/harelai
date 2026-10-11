@@ -1,0 +1,37 @@
+{
+  "request": [
+    {
+      "text": "FICTIONAL AUTHORIZATION REQUEST ? ALTERNATE CASE\nBeneficiary Name: TAYLOR SAMPLE\nDate of Birth: 01/10/1960\nMRN: ALT-200002\nTracking #: PA-ALT-200002\nProvider Name: Jordan Lee, MD\nProcedure/Service: Robotic-Assisted Transbronchial Lung Biopsy\nCPT Code(s): 31629, 31632, 77012\nICD-10 Diagnosis: R91.1 ? Solitary pulmonary nodule\nRequested DOS: 2026-11-15\nFacility: Fictional North Valley Medical Center\nThe request states that robotic navigation can reach this peripheral lesion.\n",
+      "page": 1,
+      "ocr": false
+    }
+  ],
+  "clinical": [
+    {
+      "text": "FICTIONAL CLINICAL NOTE ? ALTERNATE CASE\nPatient: TAYLOR SAMPLE\nDOB: 01/10/1960\nMRN: ALT-200002\nThe patient is clinically stable. A 6 mm right middle lobe nodule has been unchanged on imaging for\n24 months.\nThe nodule is not considered suspicious for malignancy. No biopsy or tissue diagnosis is\nrecommended.\nAnnual imaging surveillance is appropriate. Robotic-assisted biopsy is not clinically indicated for this\nfinding.\nThere is no documented contraindication to bronchoscopy.\n",
+      "page": 1,
+      "ocr": false
+    }
+  ],
+  "ct": [
+    {
+      "text": "FICTIONAL CT CHEST REPORT ? ALTERNATE CASE\nPatient: TAYLOR SAMPLE\nDOB: 01/10/1960\nMRN: ALT-200002\nThere is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study\nfrom 2024.\nNo spiculated margins or suspicious interval growth are identified.\nThe nodule is not suspicious for primary lung malignancy.\nLung-RADS Category: 2\nRecommendation: Continue annual low-dose CT surveillance. Tissue sampling is not recommended.\n",
+      "page": 1,
+      "ocr": false
+    }
+  ],
+  "labs": [
+    {
+      "text": "FICTIONAL LABORATORY REPORT ? ALTERNATE CASE\nPatient: TAYLOR SAMPLE\nDOB: 01/10/1960\nMRN: ALT-200002\nPT 12.0 seconds; INR 1.0; PTT 29 seconds.\nAll values are within normal limits.\nThe patient is suitable for invasive procedures from a hematologic and metabolic standpoint.\nNo evidence of coagulopathy.\n",
+      "page": 1,
+      "ocr": false
+    }
+  ],
+  "pft": [
+    {
+      "text": "FICTIONAL PULMONARY FUNCTION REPORT ? ALTERNATE CASE\nPatient: TAYLOR SAMPLE\nDOB: 01/10/1960\nMRN: ALT-200002\nPre-bronchodilator FEV1 is 88% predicted.\nDLCO is 82% predicted.\nFrom a pulmonary function standpoint, the patient would tolerate bronchoscopic procedures.\n",
+      "page": 1,
+      "ocr": false
+    }
+  ]
+}

@@ -1,0 +1,1049 @@
+{
+  "schema_version": 2,
+  "workflow": {
+    "name": "lung_biopsy",
+    "version": "1.1"
+  },
+  "language": "he",
+  "recommendation": {
+    "status": "MANUAL_REVIEW",
+    "reason": "נדרשת בדיקה ידנית: תנאי נדרש אינו נתמך: נודול חשוד המצריך בירור. תנאי נדרש אינו נתמך: הומלצה דגימת רקמה."
+  },
+  "rules": [
+    {
+      "id": "rule_1",
+      "label": "נודול חשוד המצריך בירור",
+      "met": false,
+      "conditions": [
+        {
+          "field": "suspicious_nodule",
+          "roles": [
+            "ct",
+            "clinical"
+          ],
+          "op": "eq",
+          "expected": true,
+          "values": [],
+          "met": false
+        }
+      ],
+      "evidence": []
+    },
+    {
+      "id": "rule_2",
+      "label": "הומלצה דגימת רקמה",
+      "met": false,
+      "conditions": [
+        {
+          "field": "tissue_sampling",
+          "roles": [
+            "ct",
+            "clinical"
+          ],
+          "op": "eq",
+          "expected": true,
+          "values": [],
+          "met": false
+        }
+      ],
+      "evidence": []
+    },
+    {
+      "id": "rule_3",
+      "label": "הפרוצדורה המבוקשת מתאימה לממצאים ולמצב הרפואי",
+      "met": true,
+      "conditions": [
+        {
+          "field": "procedure_supported",
+          "roles": [
+            "request",
+            "clinical"
+          ],
+          "op": "eq",
+          "expected": true,
+          "values": [
+            true
+          ],
+          "met": true
+        }
+      ],
+      "evidence": [
+        {
+          "document_id": "request",
+          "quote": "The request states that robotic navigation can reach this peripheral lesion.",
+          "page": 1,
+          "ocr": false
+        }
+      ]
+    },
+    {
+      "id": "rule_4",
+      "label": "הבדיקות המקדימות אינן מצביעות על מניעה ברורה",
+      "met": true,
+      "conditions": [
+        {
+          "field": "labs_acceptable",
+          "roles": [
+            "labs"
+          ],
+          "op": "eq",
+          "expected": true,
+          "values": [
+            true
+          ],
+          "met": true
+        },
+        {
+          "field": "pulmonary_acceptable",
+          "roles": [
+            "pft"
+          ],
+          "op": "eq",
+          "expected": true,
+          "values": [
+            true
+          ],
+          "met": true
+        }
+      ],
+      "evidence": [
+        {
+          "document_id": "labs",
+          "quote": "The patient is suitable for invasive procedures from a hematologic and metabolic standpoint.",
+          "page": 1,
+          "ocr": false
+        },
+        {
+          "document_id": "pft",
+          "quote": "From a pulmonary function standpoint, the patient would tolerate bronchoscopic procedures.",
+          "page": 1,
+          "ocr": false
+        }
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "code": "summary_selected",
+      "severity": "warning",
+      "detail": "נמצאו כמה ערכים עבור הממצא העיקרי; בסיכום מוצג הראשון שמופיע במסמכים."
+    },
+    {
+      "code": "summary_selected",
+      "severity": "warning",
+      "detail": "נמצאו כמה ערכים עבור נימוק לבחירת הפרוצדורה; בסיכום מוצג הראשון שמופיע במסמכים."
+    }
+  ],
+  "facts": {
+    "request": {
+      "patient_name": [
+        {
+          "value": "TAYLOR SAMPLE",
+          "quote": "Beneficiary Name: TAYLOR SAMPLE",
+          "sources": [
+            {
+              "document_id": "request",
+              "quote": "Beneficiary Name: TAYLOR SAMPLE",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "date_of_birth": [
+        {
+          "value": "1960-01-10",
+          "quote": "Date of Birth: 01/10/1960",
+          "sources": [
+            {
+              "document_id": "request",
+              "quote": "Date of Birth: 01/10/1960",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "case_id": [
+        {
+          "value": "PA-ALT-200002",
+          "quote": "Tracking #: PA-ALT-200002",
+          "sources": [
+            {
+              "document_id": "request",
+              "quote": "Tracking #: PA-ALT-200002",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "provider": [
+        {
+          "value": "Jordan Lee, MD",
+          "quote": "Provider Name: Jordan Lee, MD",
+          "sources": [
+            {
+              "document_id": "request",
+              "quote": "Provider Name: Jordan Lee, MD",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "procedure": [
+        {
+          "value": "Robotic-Assisted Transbronchial Lung Biopsy",
+          "quote": "Procedure/Service: Robotic-Assisted Transbronchial Lung Biopsy",
+          "sources": [
+            {
+              "document_id": "request",
+              "quote": "Procedure/Service: Robotic-Assisted Transbronchial Lung Biopsy",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "cpt_codes": [
+        {
+          "value": [
+            "31629",
+            "31632",
+            "77012"
+          ],
+          "quote": "CPT Code(s): 31629, 31632, 77012",
+          "sources": [
+            {
+              "document_id": "request",
+              "quote": "CPT Code(s): 31629, 31632, 77012",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "diagnoses": [
+        {
+          "value": [
+            "R91.1"
+          ],
+          "quote": "ICD-10 Diagnosis: R91.1 ? Solitary pulmonary nodule",
+          "sources": [
+            {
+              "document_id": "request",
+              "quote": "ICD-10 Diagnosis: R91.1 ? Solitary pulmonary nodule",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "requested_date": [
+        {
+          "value": "2026-11-15",
+          "quote": "Requested DOS: 2026-11-15",
+          "sources": [
+            {
+              "document_id": "request",
+              "quote": "Requested DOS: 2026-11-15",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "facility": [
+        {
+          "value": "Fictional North Valley Medical Center",
+          "quote": "Facility: Fictional North Valley Medical Center",
+          "sources": [
+            {
+              "document_id": "request",
+              "quote": "Facility: Fictional North Valley Medical Center",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "rationale": [
+        {
+          "value": "The request states that robotic navigation can reach this peripheral lesion.",
+          "quote": "The request states that robotic navigation can reach this peripheral lesion.",
+          "sources": [
+            {
+              "document_id": "request",
+              "quote": "The request states that robotic navigation can reach this peripheral lesion.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "procedure_supported": [
+        {
+          "value": true,
+          "quote": "The request states that robotic navigation can reach this peripheral lesion.",
+          "sources": [
+            {
+              "document_id": "request",
+              "quote": "The request states that robotic navigation can reach this peripheral lesion.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ]
+    },
+    "clinical": {
+      "patient_name": [
+        {
+          "value": "TAYLOR SAMPLE",
+          "quote": "Patient: TAYLOR SAMPLE",
+          "sources": [
+            {
+              "document_id": "clinical",
+              "quote": "Patient: TAYLOR SAMPLE",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "date_of_birth": [
+        {
+          "value": "1960-01-10",
+          "quote": "DOB: 01/10/1960",
+          "sources": [
+            {
+              "document_id": "clinical",
+              "quote": "DOB: 01/10/1960",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "mrn": [
+        {
+          "value": "ALT-200002",
+          "quote": "MRN: ALT-200002",
+          "sources": [
+            {
+              "document_id": "clinical",
+              "quote": "MRN: ALT-200002",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "finding": [
+        {
+          "value": "right middle lobe nodule has been unchanged on imaging for 24 months.",
+          "quote": "A 6 mm right middle lobe nodule has been unchanged on imaging for 24 months.",
+          "sources": [
+            {
+              "document_id": "clinical",
+              "quote": "A 6 mm right middle lobe nodule has been unchanged on imaging for 24 months.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "rationale": [
+        {
+          "value": "N/A",
+          "quote": "Robotic-assisted biopsy is not clinically indicated for this finding.",
+          "sources": [
+            {
+              "document_id": "clinical",
+              "quote": "Robotic-assisted biopsy is not clinically indicated for this finding.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ]
+    },
+    "ct": {
+      "patient_name": [
+        {
+          "value": "TAYLOR SAMPLE",
+          "quote": "Patient: TAYLOR SAMPLE",
+          "sources": [
+            {
+              "document_id": "ct",
+              "quote": "Patient: TAYLOR SAMPLE",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "date_of_birth": [
+        {
+          "value": "1960-01-10",
+          "quote": "DOB: 01/10/1960",
+          "sources": [
+            {
+              "document_id": "ct",
+              "quote": "DOB: 01/10/1960",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "mrn": [
+        {
+          "value": "ALT-200002",
+          "quote": "MRN: ALT-200002",
+          "sources": [
+            {
+              "document_id": "ct",
+              "quote": "MRN: ALT-200002",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "finding": [
+        {
+          "value": "right middle lobe, unchanged compared with the study from 2024",
+          "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+          "sources": [
+            {
+              "document_id": "ct",
+              "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "location": [
+        {
+          "value": "right middle lobe",
+          "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+          "sources": [
+            {
+              "document_id": "ct",
+              "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "nodule_size": [
+        {
+          "value": "6 mm",
+          "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+          "sources": [
+            {
+              "document_id": "ct",
+              "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "characteristics": [
+        {
+          "value": "smooth solid nodule",
+          "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+          "sources": [
+            {
+              "document_id": "ct",
+              "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "lung_rads": [
+        {
+          "value": "2",
+          "quote": "Lung-RADS Category: 2",
+          "sources": [
+            {
+              "document_id": "ct",
+              "quote": "Lung-RADS Category: 2",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ]
+    },
+    "labs": {
+      "patient_name": [
+        {
+          "value": "TAYLOR SAMPLE",
+          "quote": "Patient: TAYLOR SAMPLE",
+          "sources": [
+            {
+              "document_id": "labs",
+              "quote": "Patient: TAYLOR SAMPLE",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "date_of_birth": [
+        {
+          "value": "1960-01-10",
+          "quote": "DOB: 01/10/1960",
+          "sources": [
+            {
+              "document_id": "labs",
+              "quote": "DOB: 01/10/1960",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "mrn": [
+        {
+          "value": "ALT-200002",
+          "quote": "MRN: ALT-200002",
+          "sources": [
+            {
+              "document_id": "labs",
+              "quote": "MRN: ALT-200002",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "coagulation_status": [
+        {
+          "value": "Normal",
+          "quote": "PT 12.0 seconds; INR 1.0; PTT 29 seconds.",
+          "sources": [
+            {
+              "document_id": "labs",
+              "quote": "PT 12.0 seconds; INR 1.0; PTT 29 seconds.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        },
+        {
+          "value": "Normal",
+          "quote": "All values are within normal limits.",
+          "sources": [
+            {
+              "document_id": "labs",
+              "quote": "All values are within normal limits.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        },
+        {
+          "value": "Normal",
+          "quote": "No evidence of coagulopathy.",
+          "sources": [
+            {
+              "document_id": "labs",
+              "quote": "No evidence of coagulopathy.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "labs_acceptable": [
+        {
+          "value": true,
+          "quote": "The patient is suitable for invasive procedures from a hematologic and metabolic standpoint.",
+          "sources": [
+            {
+              "document_id": "labs",
+              "quote": "The patient is suitable for invasive procedures from a hematologic and metabolic standpoint.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ]
+    },
+    "pft": {
+      "patient_name": [
+        {
+          "value": "TAYLOR SAMPLE",
+          "quote": "Patient: TAYLOR SAMPLE",
+          "sources": [
+            {
+              "document_id": "pft",
+              "quote": "Patient: TAYLOR SAMPLE",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "date_of_birth": [
+        {
+          "value": "1960-01-10",
+          "quote": "DOB: 01/10/1960",
+          "sources": [
+            {
+              "document_id": "pft",
+              "quote": "DOB: 01/10/1960",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "mrn": [
+        {
+          "value": "ALT-200002",
+          "quote": "MRN: ALT-200002",
+          "sources": [
+            {
+              "document_id": "pft",
+              "quote": "MRN: ALT-200002",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "fev1_percent": [
+        {
+          "value": 88.0,
+          "quote": "Pre-bronchodilator FEV1 is 88% predicted.",
+          "sources": [
+            {
+              "document_id": "pft",
+              "quote": "Pre-bronchodilator FEV1 is 88% predicted.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "dlco_percent": [
+        {
+          "value": 82.0,
+          "quote": "DLCO is 82% predicted.",
+          "sources": [
+            {
+              "document_id": "pft",
+              "quote": "DLCO is 82% predicted.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ],
+      "pulmonary_acceptable": [
+        {
+          "value": true,
+          "quote": "From a pulmonary function standpoint, the patient would tolerate bronchoscopic procedures.",
+          "sources": [
+            {
+              "document_id": "pft",
+              "quote": "From a pulmonary function standpoint, the patient would tolerate bronchoscopic procedures.",
+              "page": 1,
+              "ocr": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "evidence": {
+    "request": {
+      "patient_name": [
+        {
+          "document_id": "request",
+          "quote": "Beneficiary Name: TAYLOR SAMPLE",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "date_of_birth": [
+        {
+          "document_id": "request",
+          "quote": "Date of Birth: 01/10/1960",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "case_id": [
+        {
+          "document_id": "request",
+          "quote": "Tracking #: PA-ALT-200002",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "provider": [
+        {
+          "document_id": "request",
+          "quote": "Provider Name: Jordan Lee, MD",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "procedure": [
+        {
+          "document_id": "request",
+          "quote": "Procedure/Service: Robotic-Assisted Transbronchial Lung Biopsy",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "cpt_codes": [
+        {
+          "document_id": "request",
+          "quote": "CPT Code(s): 31629, 31632, 77012",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "diagnoses": [
+        {
+          "document_id": "request",
+          "quote": "ICD-10 Diagnosis: R91.1 ? Solitary pulmonary nodule",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "requested_date": [
+        {
+          "document_id": "request",
+          "quote": "Requested DOS: 2026-11-15",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "facility": [
+        {
+          "document_id": "request",
+          "quote": "Facility: Fictional North Valley Medical Center",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "rationale": [
+        {
+          "document_id": "request",
+          "quote": "The request states that robotic navigation can reach this peripheral lesion.",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "procedure_supported": [
+        {
+          "document_id": "request",
+          "quote": "The request states that robotic navigation can reach this peripheral lesion.",
+          "page": 1,
+          "ocr": false
+        }
+      ]
+    },
+    "clinical": {
+      "patient_name": [
+        {
+          "document_id": "clinical",
+          "quote": "Patient: TAYLOR SAMPLE",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "date_of_birth": [
+        {
+          "document_id": "clinical",
+          "quote": "DOB: 01/10/1960",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "mrn": [
+        {
+          "document_id": "clinical",
+          "quote": "MRN: ALT-200002",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "finding": [
+        {
+          "document_id": "clinical",
+          "quote": "A 6 mm right middle lobe nodule has been unchanged on imaging for 24 months.",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "rationale": [
+        {
+          "document_id": "clinical",
+          "quote": "Robotic-assisted biopsy is not clinically indicated for this finding.",
+          "page": 1,
+          "ocr": false
+        }
+      ]
+    },
+    "ct": {
+      "patient_name": [
+        {
+          "document_id": "ct",
+          "quote": "Patient: TAYLOR SAMPLE",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "date_of_birth": [
+        {
+          "document_id": "ct",
+          "quote": "DOB: 01/10/1960",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "mrn": [
+        {
+          "document_id": "ct",
+          "quote": "MRN: ALT-200002",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "finding": [
+        {
+          "document_id": "ct",
+          "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "location": [
+        {
+          "document_id": "ct",
+          "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "nodule_size": [
+        {
+          "document_id": "ct",
+          "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "characteristics": [
+        {
+          "document_id": "ct",
+          "quote": "There is a 6 mm smooth solid nodule in the right middle lobe, unchanged compared with the study from 2024.",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "lung_rads": [
+        {
+          "document_id": "ct",
+          "quote": "Lung-RADS Category: 2",
+          "page": 1,
+          "ocr": false
+        }
+      ]
+    },
+    "labs": {
+      "patient_name": [
+        {
+          "document_id": "labs",
+          "quote": "Patient: TAYLOR SAMPLE",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "date_of_birth": [
+        {
+          "document_id": "labs",
+          "quote": "DOB: 01/10/1960",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "mrn": [
+        {
+          "document_id": "labs",
+          "quote": "MRN: ALT-200002",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "coagulation_status": [
+        {
+          "document_id": "labs",
+          "quote": "PT 12.0 seconds; INR 1.0; PTT 29 seconds.",
+          "page": 1,
+          "ocr": false
+        },
+        {
+          "document_id": "labs",
+          "quote": "All values are within normal limits.",
+          "page": 1,
+          "ocr": false
+        },
+        {
+          "document_id": "labs",
+          "quote": "No evidence of coagulopathy.",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "labs_acceptable": [
+        {
+          "document_id": "labs",
+          "quote": "The patient is suitable for invasive procedures from a hematologic and metabolic standpoint.",
+          "page": 1,
+          "ocr": false
+        }
+      ]
+    },
+    "pft": {
+      "patient_name": [
+        {
+          "document_id": "pft",
+          "quote": "Patient: TAYLOR SAMPLE",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "date_of_birth": [
+        {
+          "document_id": "pft",
+          "quote": "DOB: 01/10/1960",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "mrn": [
+        {
+          "document_id": "pft",
+          "quote": "MRN: ALT-200002",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "fev1_percent": [
+        {
+          "document_id": "pft",
+          "quote": "Pre-bronchodilator FEV1 is 88% predicted.",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "dlco_percent": [
+        {
+          "document_id": "pft",
+          "quote": "DLCO is 82% predicted.",
+          "page": 1,
+          "ocr": false
+        }
+      ],
+      "pulmonary_acceptable": [
+        {
+          "document_id": "pft",
+          "quote": "From a pulmonary function standpoint, the patient would tolerate bronchoscopic procedures.",
+          "page": 1,
+          "ocr": false
+        }
+      ]
+    }
+  },
+  "documents": [
+    {
+      "id": "request",
+      "role": "request",
+      "path": "ai/alternate_case/01_request.pdf",
+      "sha256": "32656bd39ebe15c97851b214b6cef9a64a8272da7866156fa1dee0c966321e2a",
+      "reader": "pdf",
+      "units": 1
+    },
+    {
+      "id": "clinical",
+      "role": "clinical",
+      "path": "ai/alternate_case/02_clinical.pdf",
+      "sha256": "9fe1709e26021b739c56d2f3827c39ef603c59aeab56083f020847f0e96c5863",
+      "reader": "pdf",
+      "units": 1
+    },
+    {
+      "id": "ct",
+      "role": "ct",
+      "path": "ai/alternate_case/03_ct.pdf",
+      "sha256": "9673ab6c3c7eb7085d7bcbe6b905f5c715f21a21ba651c9af91e1e523c2d1325",
+      "reader": "pdf",
+      "units": 1
+    },
+    {
+      "id": "labs",
+      "role": "labs",
+      "path": "ai/alternate_case/04_labs.pdf",
+      "sha256": "3936dc53c90d384f50f4e333e7b912cb48d9f6f9bc369162f7c7dde3cbe3fb99",
+      "reader": "pdf",
+      "units": 1
+    },
+    {
+      "id": "pft",
+      "role": "pft",
+      "path": "ai/alternate_case/05_pft.pdf",
+      "sha256": "15c626bb94f9ba4502384e3674ba95cff33dc0d69c4849c6d7ce9a86a145871e",
+      "reader": "pdf",
+      "units": 1
+    }
+  ],
+  "model": "gemma4",
+  "patient": {
+    "name": "Taylor Sample",
+    "date_of_birth": "1960-01-10",
+    "mrn": "ALT-200002"
+  },
+  "case_id": "PA-ALT-200002",
+  "request": {
+    "provider": "Jordan Lee, MD",
+    "procedure": "Robotic-Assisted Transbronchial Lung Biopsy",
+    "cpt_codes": [
+      "31629",
+      "31632",
+      "77012"
+    ],
+    "diagnoses": [
+      "R91.1"
+    ],
+    "requested_date": "2026-11-15",
+    "facility": "Fictional North Valley Medical Center"
+  },
+  "clinical_summary": {
+    "finding": "right middle lobe, unchanged compared with the study from 2024",
+    "location": "right middle lobe",
+    "nodule_size": "6 mm",
+    "characteristics": "smooth solid nodule",
+    "lung_rads": "2",
+    "malignancy_risk": null,
+    "coagulation_status": "Normal",
+    "fev1_percent": 88,
+    "dlco_percent": 82,
+    "suv_max": null,
+    "rationale": "The request states that robotic navigation can reach this peripheral lesion."
+  }
+}

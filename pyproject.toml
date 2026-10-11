@@ -4,13 +4,25 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "medical-approval"
-version = "0.3.0"
-description = "Prior authorization review with a local Ollama model"
+version = "0.5.0"
+description = "Evidence-grounded review of medical prior-authorization packets with a local LLM"
+readme = "README.md"
 requires-python = ">=3.11"
 dependencies = ["pydantic>=2.10,<3", "PyMuPDF>=1.24,<2"]
+keywords = ["prior-authorization", "document-review", "ollama", "llm", "evidence", "hebrew"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Text Processing",
+]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+
+[project.urls]
+Repository = "https://github.com/Doringber/harelai"
 
 [project.scripts]
 medical-approval = "approval.__main__:main"
@@ -18,5 +30,9 @@ medical-approval = "approval.__main__:main"
 [tool.setuptools.packages.find]
 include = ["approval*"]
 
+[tool.setuptools.package-data]
+"approval.profiles" = ["*.json"]
+
 [tool.pytest.ini_options]
 pythonpath = ["."]
+testpaths = ["tests"]
